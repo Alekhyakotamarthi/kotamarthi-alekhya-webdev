@@ -4,6 +4,8 @@ input.form-control {
 
 body {
     padding-top: 70px;
+    padding-bottom: 70px;
+
 }
 
 .navbar-default
@@ -38,3 +40,19 @@ body {
     margin : 15px;
     color : white;
 }
+
+.list-group-item
+{
+    border: none
+}
+
+.jga-widget-tool {
+    position: absolute;
+    right: 15px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 0.7;
+}
+
