@@ -15,6 +15,7 @@ body {
 
 .navbar-default .navbar-brand {
     color: white;
+
 }
 
 .navbar-header
@@ -23,22 +24,23 @@ body {
 }
 
 .glyphicon-ok:before {
-    margin: 15px;
-    color: white;
+                margin: 10px;
+                color: white;
 }
 
 .glyphicon-user:before {
-    margin: 15px;
-    color: white;
+                margin: 10px;
+                color: white;
 }
 
 .glyphicon-plus:before {
-    margin: 15px;
-    color: white;
+                margin: 10px;
+
+                color: white;
 }
 .glyphicon-chevron-left:before{
-    margin : 15px;
-    color : white;
+                 margin : 10px;
+            color : white;
 }
 
 .list-group-item
