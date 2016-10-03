@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Widget Edit</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-fixed-top" >
+
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <div class="navbar-text pull-left" style="margin-left: 0px;">
+                <a href="widget-list.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <a class="navbar-brand" href="#">
+                Widget Edit
+            </a>
+            <div class="navbar-text pull-right" style="margin-right: 0px;">
+                <a href="widget-list.html">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="widgetname">Name</label>
+            <input type="text" class="form-control" id="widgetname" placeholder="Gizmodo">
+        </div>
+        <div class="form-group">
+            <label for="widgettext">Text</label>
+            <input type="text" class="form-control" id="widgettext" placeholder="US Senate Reaches Compromise on Energy">
+        </div>
+        <div class="form-group">
+            <label for="widgeturl">URL</label>
+            <input type="url" class="form-control" id="widgeturl" placeholder="www.google.com">
+        </div>
+        <div class="form-group">
+            <label for="widgetwidth">Width</label>
+            <input type="text" class="form-control" id="widgetwidth" placeholder="100%">
+        </div>
+    </form>
+
+    <a class="btn btn-danger  btn-block"
+       href="widget-list.html">Delete</a>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a href="../user/profile.html" role="button">
+            <span class="glyphicon glyphicon-user pull-right navbar-text"></span>
+
+        </a>
+
+    </div>
+</nav>
+</body>
+</html>

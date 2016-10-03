@@ -58,3 +58,13 @@ body {
     opacity: 0.7;
 }
 
+.verticalLine {
+    width:1px;
+    background-color: lightgray;
+    left: 33%;
+    position: absolute;
+    z-index: 5;
+    top:0;
+    bottom: 0;
+}
+
