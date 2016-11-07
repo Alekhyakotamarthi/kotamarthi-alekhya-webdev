@@ -6,14 +6,24 @@
     function LoginController($location,UserService) {
                     var vm =this;
                     vm.login= function(username,password){
-                        var user = UserService.findUserByCredentials(username,password);
-                        if(user)
+                        var promise =  UserService.findUserByCredentials(username,password)
+                        promise
+                            .success(function(user)
                         {
-                            $location.url("/user/"+user._id);
-                        }
-                        else{
-                            vm.error = "User not found";
-                        }
+                            if(user==='0')
+                            {
+                                vm.error("User not found");
+                            }
+                            else
+                            {
+                                $location.url("/user/"+user._id);
+                            }
+
+                        })
+                            .error(function()
+                            {
+
+                            })
                     }
 
 

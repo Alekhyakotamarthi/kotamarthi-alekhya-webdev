@@ -5,41 +5,73 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("EditPageController",EditPageController)
+        .controller("EditPageController",EditPageController);
 
-    function EditPageController($location,$routeParams, PageService) {
-        var vm = this;
-        vm.id = $routeParams.uid;
-        vm.websiteId = $routeParams.wid;
-        vm.pageId = $routeParams.pid;
-        vm.deletePage = deletePage;
-        vm.updatePage = updatePage;
+                function EditPageController($location,$routeParams,PageService) {
+
+        var vm=this;
+        vm.id=$routeParams.uid;
+                    vm.websiteId=$routeParams.wid;
+        vm.pageId=$routeParams.pid;
+        vm.updatePage=updatePage;
+        vm.deletePage=deletePage;
+
         function init() {
-                    vm.page = PageService.findPageById(vm.pageId);
+            PageService.findPageByWebsiteId(vm.websiteId)
+                .then(
+                    function (response) {
+                        vm.pages= response.data;
+                    });
+            PageService.findPageById(vm.pageId)
+                .then(
+                    function (response) {
+                        vm.page= response.data;
+                    });
         }
-
         init();
 
+        function updatePage(name,desc) {
+            console.log(name);
+            var new_page = {
+                         name:name,
+                         _id:vm.pageId,
+                websiteId: vm.websiteId,
+                description:desc
+            };
 
-            function    deletePage(pageId) {
-            var result = PageService.deletePage(pageId);
-            if (result) {
-                $location.url("/user/" + vm.id + "/website/"  + vm.websiteId + "/page");
-            }
-            else {
-                vm.error = "page could not be deleted";
-            }
+            console.log(new_page);
+
+            PageService.updatePage(vm.pageId,new_page)
+                .then(
+                    function (response) {
+                        var UpdatedPage=response.data;
+                        console.log("UpdatedPage");
+                        console.log(UpdatedPage);
+                        if(UpdatedPage){
+                            $location.url("/user/"+vm.id+"/website/"+vm.websiteId+"/page");
+                        }
+                        else{
+                            vm.error="page not updated";
+                        }
+                    });
+
+        }
+
+        function deletePage() {
+            PageService.deletePage(vm.pageId)
+                .then(
+                    function (response) {
+                        var DeletedPage= response.data;
+                        if(DeletedPage){
+                            $location.url("/user/"+vm.id+"/website/"+vm.websiteId+"/page");
+                        }
+                        else{
+                            vm.error="page not deleted";
+                        }
+                    });
+
         }
 
 
-        function updatePage(pageId, name,description) {
-            var result = PageService.updatePage(pageId, name,description);
-            if (result) {
-                $location.url("/user/" + vm.id + "/website/"  + vm.websiteId + "/page");
-            }
-            else {
-                vm.error = "unable to update page";
-            }
-        }
     }
 })();

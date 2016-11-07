@@ -20,7 +20,7 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div wam-sortable wam-callback="model.reorderWidget(start, end)" class="container-fluid">
     <ul class="list-group">
         <li ng-repeat="website in model.websites" class="list-group-item">
             <a href="#/user/{{website.developerId}}/website/{{website._id}}/page">

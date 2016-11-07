@@ -5,6 +5,7 @@
 
 
 <form>
+    <div ng-if='model.widget.widgetType'>
     <div ng-include = "'views/widget/widget-'+model.widget.widgetType+'-editor.view.client.html'">
 </div>
 </form>

@@ -1,40 +1,73 @@
-(function () {
+(function() {
     angular
         .module("WebAppMaker")
         .controller("RegisterController", RegisterController);
 
     function RegisterController($location, UserService) {
         var vm = this;
-        vm.createUser = createUser;
-        function createUser(username,password,vpassword){
-            var checkDuplicate =UserService.findUserByUserName(username);
-            if(checkDuplicate){
-                vm.error = "User name already exists";
-            }
-            else{
-                if(password===vpassword)
-                {
-                  var newUser ={
-                      _id:(new Date).getTime()+"",
-                      username: username,
-                      password:password,
-                      firstName:username,
-                      lastName: username,
-                  } ;
 
-                  var result = UserService.createUser(newUser);
-                    if(result){
-                        $location.url("/user/"+newUser._id)
+        vm.createUser=createUser;
+
+        function init(){
+
+        }
+
+                 function createUser(username,password,npassword) {
+
+            //console.log("entered create user");
+            //console.log(username);
+            //var user =
+            UserService
+                .findUserByUsername(username)
+                .then(function(response){
+
+                    var user=response.data;
+
+                    if (user) {
+                        vm.error="user already exists";
                     }
-                    else{
-                        $location.url("/login");
+
+                    else
+                    {
+                        if(password===npassword){
+
+
+                            var newUser={
+                                _id:(new Date()).getTime()+"",
+                                "firstName":username,
+                                "lastName": username,
+                                "username":username,
+                                "password":password
+                            };
+
+
+                            // var success =
+                            UserService
+                                .createUser(newUser)
+                                .then(function(response){
+                                    var success = response.data;
+
+                                    if(success){
+                                        $location.url("/user/"+newUser._id)
+                                    }
+                                    else{
+                                        $location.url("/login");
+                                    }
+                                })
+
+
+
+                        }
+
+                        else{
+                            vm.error="passwords dont match!!"}
                     }
-                }
-                else{
-                    vm.error="Passwords do not match";
-                }
-            }
+
+                })
+
+
         }
 
     }
+
 })();

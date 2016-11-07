@@ -6,66 +6,86 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WidgetChooserController",WidgetChooserController)
+        .controller("WidgetChooserController",WidgetChooserController);
 
-    function WidgetChooserController($location,$routeParams,WidgetService,$sce) {
-        var vm = this;
-        vm.id=$routeParams.uid;
-
-        vm.websiteId= $routeParams.wid;
+    function WidgetChooserController($location,$routeParams,WidgetService) {
+        var vm=this;
+        vm.uid=$routeParams.uid;
+        vm.wid=$routeParams.wid;
+        vm.pid=$routeParams.pid;
+        vm.id = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.wid = $routeParams.wid;
-        vm.wgid = $routeParams.wgid;
-                vm.createWidget = createWidget;
+        vm.createWidget=createWidget;
 
-        function createWidget(widgettype) {
-            if(widgettype==="HEADER"){
+        function init(){
+            WidgetService.findWidgetsForPage(vm.pid)
+                .then(
+                    function (response) {
+                        vm.widgets = response.data;
+
+                    });
+        }
+        init();
+
+        function createWidget(type) {
+//console.log("widget type");
+            //         console.log(type);
+            //        console.log(vm.pid);
+            if(type==="HEADER"){
                 var  newWidget={
                     _id:(new Date()).getTime()+"",
                     widgetType:"HEADER",
-                    pageId:vm.pageId,
+                    pageId:vm.pid,
                     size:2,
-                    text:"Default"
+                    text:"Header text"
                 }
             }
-            else if(widgettype==="IMAGE"){
+            else if(type==="IMAGE"){
                 var  newWidget={
                     _id:(new Date()).getTime()+"",
                     widgetType:"IMAGE",
-                    pageId:vm.pageId,
+                    pageId:vm.pid,
                     width:"100%",
-                    url:"http://lorempixel.com/400/200/"
+                    url:"http://www.redcuadrada.com/wp-content/uploads/2015/08/lorem_ipsum_g.jpg"
                 }
             }
-            else if(widgettype==="YOUTUBE"){
+            else if(type==="YOUTUBE"){
                 var  newWidget={
                     _id:(new Date()).getTime()+"",
                     widgetType:"YOUTUBE",
-                    pageId:vm.pageId,
+                    pageId:vm.pid,
                     width:"100%",
-                    url:"http://lorempixel.com/400/200/"
+                    url:"https://www.youtube.com/watch?v=aVS4W7GZSq0"
                 }
             }
-            else if(widgettype==="HTML"){
+            else if(type==="HTML"){
                 var  newWidget={
                     _id:(new Date()).getTime()+"",
                     widgetType:"HTML",
-                    pageId:vm.pageId,
-                    text:"<p>Lorem ipsum</p>",
+                    pageId:vm.pid,
+                    text:"<p>Lorem ipsum</p>"
                 }
             }
-            var success=WidgetService.createWidget(vm.pageId,newWidget);
-            console.log(newWidget);
-            if(success){
-                var widgetId=newWidget._id;
-                var widgettype = newWidget.widgetType;
-                $location.url("/user/"+vm.id+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widgetId);
-            }
-            else{
-                vm.error="unable to create widget";
-            }
-        }
 
+            console.log("widget::: "+newWidget.widgetType);
+            WidgetService.createWidget(vm.pid,newWidget)
+                .then(
+                    function (response) {
+                        var widgetCreated = response.data;
+                        console.log("new widget "+widgetCreated);
+                        if(widgetCreated){
+                            var wgid=newWidget._id;
+                            console.log("widget id");
+                            console.log(newWidget);
+                            $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+wgid);
+                        }
+                        else{
+                            vm.error="unable to update widget";
+                        }
+
+                    });
+        }
     }
 })();
 

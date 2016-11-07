@@ -3,55 +3,58 @@
  */
 
 
-(function () {
+(function(){
     angular
         .module("WebAppMaker")
-        .controller("WidgetListController",WidgetListController)
+        .controller("WidgetListController",WidgetListController);
 
-    function WidgetListController($location,$routeParams,WidgetService,$sce) {
-        var vm = this;
-        vm.id=$routeParams.uid;
-
-        vm.websiteId= $routeParams.wid;
+    function WidgetListController($routeParams,WidgetService,$sce) {
+        var vm=this;
+        vm.id = $routeParams.uid;
+                    vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
+        vm.wgid = $routeParams.wgid;
 
-        vm.getSafeHtml = getSafeHtml;
-        vm.getSafeUrl = getSafeUrl;
+                         vm.getSafeHtml=getSafeHtml;
+                      vm.getSafeUrl=getSafeUrl;
+        vm.reorderWidget=reorderWidget;
 
-        function init() {
-                vm.widgets=WidgetService.findWidgetsByPageId(vm.pageId);
+        function init(){
+            WidgetService.findWidgetsForPage(vm.pageId)
+                .then(
+                    function (response) {
+                        vm.widgets = response.data;
+
+                    });
+
+
         }
-
         init();
 
-
-        function createWebsite(name, description) {
-            var result = WebsiteService.createWebsite(name,description,vm.id);
-            if (result) {
-                $location.url("/user/" + vm.id + "/website");
-            }
-            else {
-                vm.error = "website could not be created";
-            }
-        }
-
-        function getSafeHtml(html){
+        function getSafeHtml(html) {
             return $sce.trustAsHtml(html);
         }
 
-        function getSafeUrl(url)
-        {
+                  function getSafeUrl(url){
             var parts = url.split('/');
-            var id = parts[parts.length-1];
-            url = 'https://www.youtube.com/embed/' +id;
-            console.log(url);
+            var id=parts[parts.length-1];
+            url = "https://www.youtube.com/embed/"+id;
             return $sce.trustAsResourceUrl(url);
-
-
-
         }
 
 
-    }
-})();
+        function reorderWidget(start, end) {
+            console.log("reorder"+start+ "  " + end);
+            WidgetService
+                .reorderWidget(vm.pageId, start, end)
+                .then(
+                    function (response) {
+                        console.log("geting called");
+                        init();
+                    });
+        }
 
+    }
+
+
+})();
