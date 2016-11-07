@@ -8,8 +8,6 @@
         .factory("WebsiteService",WebsiteService);
 
     function WebsiteService($http){
-
-
         var api={
             findWebsitesByUser: findWebsitesByUser,
             findWebsiteById: findWebsiteById,
@@ -27,14 +25,12 @@
             var url = "/api/user/"+uid+"/website";
             return $http.get(url);
         }
-
         function findWebsiteById(wid){
             var url ="/api/website/"+wid;
 
             return $http.get(url);
 
         }
-
              function createWebsite(name,desc,uid) {
 
             var url = "/api/user/"+uid+"/website";
@@ -45,9 +41,7 @@
                 developerId:uid,
                 description:desc
             };
-
             return $http.post(url,addedWebsite);
-
 
         }
 

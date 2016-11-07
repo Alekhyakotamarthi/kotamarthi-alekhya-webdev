@@ -14,9 +14,6 @@
 
                  function createUser(username,password,npassword) {
 
-            //console.log("entered create user");
-            //console.log(username);
-            //var user =
             UserService
                 .findUserByUsername(username)
                 .then(function(response){
@@ -40,8 +37,6 @@
                                 "password":password
                             };
 
-
-                            // var success =
                             UserService
                                 .createUser(newUser)
                                 .then(function(response){
@@ -54,13 +49,10 @@
                                         $location.url("/login");
                                     }
                                 })
-
-
-
                         }
 
                         else{
-                            vm.error="passwords dont match!!"}
+                            vm.error="password dont match!!"}
                     }
 
                 })

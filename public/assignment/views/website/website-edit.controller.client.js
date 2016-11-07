@@ -29,7 +29,6 @@
                         vm.websites = response.data;
                         console.log("website edit "+vm.websites);
                     });
-
         }
 
         init();
@@ -58,7 +57,6 @@
                     }
                 });
         }
-
         function deleteWebsite(websiteId) {
             WebsiteService
                 .deleteWebsite(websiteId)
@@ -70,8 +68,6 @@
                         vm.error = "website not deleted";
                     }
                 });
-
-
 
         }
 

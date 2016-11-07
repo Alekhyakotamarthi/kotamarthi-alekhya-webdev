@@ -16,6 +16,8 @@
                             }
                             else
                             {
+                                console.log(user);
+
                                 $location.url("/user/"+user._id);
                             }
 

@@ -15,11 +15,7 @@
             updateUser: updateUser,
             findUserByUsername: findUserByUsername,
             createUser: createUser,
-            UnregisterUser: UnregisterUser
-            /* deleteUserById: deleteUserById*/
-
-
-
+            UnregisterUser: UnregisterUser,
         };
         return api;
 
@@ -33,29 +29,16 @@
             var url = "/api/user/"+userId;
             return $http.get(url);
         }
-
         function findUserByUsername(uname) {
 
             var url = "/api/user?username="+uname;
             return $http.get(url);
-            /*for (var u in users) {
-             var user = users[u];
-             if (user.username === uname) {
-             return true;
-             }
-             }
-             return false;*/
         }
 
 
         function createUser(user) {
             var url = "/api/user";
-
             return $http.post(url,user);
-
-            /* var new_user = user;
-             users.push(new_user);
-             return new_user;*/
 
         }
 
@@ -66,33 +49,10 @@
             return $http.delete(url);
         }
 
-
-        /*function deleteUserById(userId) {
-
-         for (var index in users) {
-         var obj = users[index];
-         if (obj._id == userId) {
-         users.splice(index, 1);
-         return true;
-         }
-         }
-         return false;
-         }*/
-
         function updateUser(userId, user) {
 
             var url ="/api/user/"+userId;
             return $http.put(url,user);
-            /*for (var value in users) {
-             var obj = users[value];
-             var id = obj._id;
-             if (id == userid) {
-             users[value] = user;
-             return user;
-
-             }
-
-             }*/
 
         }
     }

@@ -53,11 +53,6 @@
         function createWidget(pageId,newWidget) {
 
             var widget_new = newWidget;
-            console.log("added widget in client "+newWidget._id);
-            console.log("added widget in client "+newWidget.pageId);
-            console.log("added widget in client "+newWidget.widgetType);
-            console.log("added widget in client "+newWidget.size);
-            console.log("page id here "+pageId);
             var url = "/api/page/"+pageId+"/widget";
             return $http.post(url,widget_new);
 

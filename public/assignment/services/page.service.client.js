@@ -20,12 +20,6 @@
         return api;
 
         function updatePage(pid,page) {
-            /* var new_page={
-             _id:pid,
-             name:name,
-             websiteId:wid,
-             description: desc
-             };*/
             var url = "/api/page/"+pid;
             return $http.put(url,page);
         }

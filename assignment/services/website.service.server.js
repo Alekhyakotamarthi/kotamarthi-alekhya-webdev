@@ -43,7 +43,6 @@ module.exports = function(app){
         res.send(null);
     }
 
-
     function createWebsite(req,res) {
         var website = req.body;
         console.log(website);
@@ -70,7 +69,6 @@ module.exports = function(app){
 
         res.send(400);
     }
-
     function deleteWebsite(req,res){
         var wid = req.params.websiteId;
         for(var w in websites){
@@ -82,5 +80,4 @@ module.exports = function(app){
         }
         res.send(400);
     }
-
 };

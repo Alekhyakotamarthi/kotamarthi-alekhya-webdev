@@ -22,14 +22,12 @@ module.exports = function(app){
         },
         {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
-
     app.get("/api/page/:pageId/widget",findAllWidgetsForPage);
     app.get("/api/widget/:widgetId",findWidgetById);
     app.put("/api/widget/:widgetId",updateWidget);
     app.post("/api/page/:pageId/widget",createWidget);
     app.delete("/api/widget/:widgetId",deleteWidget);
     app.post ("/api/uploads", upload.single('myFile'), uploadImage);
-
 
                 function uploadImage(req, res) {
                         console.log("i am here");
@@ -50,7 +48,6 @@ module.exports = function(app){
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-
         for (var w in widgets) {
             var widget = widgets[w];
             if (widget._id === widgetId) {
@@ -59,7 +56,6 @@ module.exports = function(app){
         }
         res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
     }
-
          function reorderWidget(req, res) {
               var start = req.query.start;
         var end = req.query.end;
@@ -112,8 +108,6 @@ module.exports = function(app){
         }
         res.send( null);
     }
-
-
     function updateWidget(req,res){
 
         var widget = req.body;
@@ -148,9 +142,6 @@ module.exports = function(app){
         console.log("all widgets after "+widgets);
         res.send(newWidget);
     }
-
-
-
     function deleteWidget(req,res){
         var widgetId=req.params.widgetId;
 
