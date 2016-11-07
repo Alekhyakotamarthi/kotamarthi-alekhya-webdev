@@ -15,7 +15,6 @@
             WebsiteService
                 .findWebsitesByUser(vm.id)
                 .then(function(response){
-
                     vm.websites = response.data;
                 })
         }
