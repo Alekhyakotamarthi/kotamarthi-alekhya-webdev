@@ -26,10 +26,12 @@
         init();
 
         function updateUser(newUser) {
+
                       UserService.updateUser(vm.id,newUser)
                 .success(function(user){
-                    vm.user = user;
                     console.log(vm.user);
+                    $location.url("/user/"+vm.user._id);
+
                 });
         }
 
