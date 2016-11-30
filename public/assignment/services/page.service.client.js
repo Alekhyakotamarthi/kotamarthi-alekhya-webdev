@@ -37,7 +37,7 @@
 
         function createPage(wid,name,desc) {
             var newPage={
-                _id:(new Date()).getTime()+"",
+               // _id:(new Date()).getTime()+"",
                 name:name,
                 websiteId:wid,
                 description:desc

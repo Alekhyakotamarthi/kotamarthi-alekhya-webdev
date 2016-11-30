@@ -12,6 +12,7 @@
 
         var vm=this;
         vm.updateUser=updateUser;
+        vm.deleteUser = deleteUser;
         vm.id=$routeParams.uid;
         function init() {
             UserService.findUserById(vm.id)
@@ -25,10 +26,18 @@
         init();
 
         function updateUser(newUser) {
-            UserService.updateUser(vm.id,newUser)
+                      UserService.updateUser(vm.id,newUser)
                 .success(function(user){
                     vm.user = user;
                     console.log(vm.user);
+                });
+        }
+
+                     function deleteUser(User) {
+                     UserService.deleteUser(User)
+                       .success(function(status){
+                    console.log(status);
+                           $location.url("/login");
                 });
         }
 

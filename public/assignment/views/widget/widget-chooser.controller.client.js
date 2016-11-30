@@ -34,16 +34,27 @@
             //        console.log(vm.pid);
             if(type==="HEADER"){
                 var  newWidget={
-                    _id:(new Date()).getTime()+"",
+                   // _id:(new Date()).getTime()+"",
                     widgetType:"HEADER",
                     pageId:vm.pid,
                     size:2,
                     text:"Header text"
                 }
             }
+            else if(type==="TEXT"){
+                var  newWidget={
+                    // _id:(new Date()).getTime()+"",
+                    widgetType:"TEXT",
+                    pageId:vm.pid,
+                    text:"<p>Lorem ipsum</p>",
+                    rows:2,
+                    placeholder:"This is a placeholder",
+                    formatted:true
+                }
+            }
             else if(type==="IMAGE"){
                 var  newWidget={
-                    _id:(new Date()).getTime()+"",
+                   // _id:(new Date()).getTime()+"",
                     widgetType:"IMAGE",
                     pageId:vm.pid,
                     width:"100%",
@@ -52,7 +63,7 @@
             }
             else if(type==="YOUTUBE"){
                 var  newWidget={
-                    _id:(new Date()).getTime()+"",
+                   // _id:(new Date()).getTime()+"",
                     widgetType:"YOUTUBE",
                     pageId:vm.pid,
                     width:"100%",
@@ -61,7 +72,7 @@
             }
             else if(type==="HTML"){
                 var  newWidget={
-                    _id:(new Date()).getTime()+"",
+                    //_id:(new Date()).getTime()+"",
                     widgetType:"HTML",
                     pageId:vm.pid,
                     text:"<p>Lorem ipsum</p>"
@@ -73,9 +84,9 @@
                 .then(
                     function (response) {
                         var widgetCreated = response.data;
-                        console.log("new widget "+widgetCreated);
+
                         if(widgetCreated){
-                            var wgid=newWidget._id;
+                            var wgid=widgetCreated._id;
                             console.log("widget id");
                             console.log(newWidget);
                             $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+wgid);

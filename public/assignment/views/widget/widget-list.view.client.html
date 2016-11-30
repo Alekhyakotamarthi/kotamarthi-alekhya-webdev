@@ -1,4 +1,5 @@
 
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class ="jga-header">
     <div class="container-fluid">
@@ -20,7 +21,7 @@
 </nav>
 <div
         wam-sortable wam-callback="model.reorderWidget(start, end)" class="container">
-    <div ng-repeat="widget in model.widgets" class="jga-widget">
+    <div ng-repeat="widget in model.widgets  | orderBy: 'order'" class="jga-widget">
 
         <div class="jga-widget-tool">
             <a href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
@@ -48,8 +49,19 @@
                 <img width="{{widget.width}}%" ng-src="{{widget.url}}"/>
             </div>
 
-            <div ng-switch-when="YOUTUBE">
-                <iframe width="{{widget.width}}"  ng-src="{{model.getSafeUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
+            <div ng-switch-when="TEXT">
+                <div ng-if="widget.formatted" text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]" ng-model="widget.text"></div>
+                <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                       placeholder="{{widget.placeholder}}" class="form-control"/>
+                <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                          rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                          class="form-control">{{widget.text}}</textarea>
+            </div>
+
+            <div ng-switch-when="YOUTUBE" class="youtube-widget">
+                <iframe width="{{widget.width}}"  ng-src="{{model.getSafeUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
             </div>
 
             <div ng-switch-default>

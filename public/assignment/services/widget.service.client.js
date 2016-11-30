@@ -8,8 +8,6 @@
         .factory("WidgetService",WidgetService);
 
     function WidgetService($http) {
-
-
         var api = {
             findWidgetsForPage: findWidgetsForPage,
             findWidgetById: findWidgetById,

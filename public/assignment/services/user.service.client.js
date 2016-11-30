@@ -15,7 +15,7 @@
             updateUser: updateUser,
             findUserByUsername: findUserByUsername,
             createUser: createUser,
-            UnregisterUser: UnregisterUser,
+            deleteUser: deleteUser,
         };
         return api;
 
@@ -43,7 +43,7 @@
         }
 
 
-        function UnregisterUser(uid){
+                 function deleteUser(uid){
             console.log("at client server"+uid);
             var url = "/api/user/"+uid;
             return $http.delete(url);
@@ -51,8 +51,8 @@
 
         function updateUser(userId, user) {
 
-            var url ="/api/user/"+userId;
-            return $http.put(url,user);
+                     var url ="/api/user/"+userId;
+                     return $http.put(url,user);
 
         }
     }

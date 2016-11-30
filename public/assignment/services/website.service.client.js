@@ -36,7 +36,7 @@
             var url = "/api/user/"+uid+"/website";
 
             var addedWebsite={
-                _id:(new Date()).getTime()+"",
+               // _id:(new Date()).getTime()+"",
                 name:name,
                 developerId:uid,
                 description:desc

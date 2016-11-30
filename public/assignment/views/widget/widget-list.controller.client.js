@@ -34,22 +34,19 @@
         function getSafeHtml(html) {
             return $sce.trustAsHtml(html);
         }
-
-                  function getSafeUrl(url){
-            var parts = url.split('/');
-            var id=parts[parts.length-1];
-            url = "https://www.youtube.com/embed/"+id;
-            return $sce.trustAsResourceUrl(url);
+                  function getSafeUrl(widget){
+                      var urlParts=widget.url.split("/");
+                      var id=urlParts[urlParts.length -1];
+                      var url="https://www.youtube.com/embed/"+id;
+                      console.log(url);
+                      return $sce.trustAsResourceUrl(url);
         }
-
-
         function reorderWidget(start, end) {
-            console.log("reorder"+start+ "  " + end);
             WidgetService
                 .reorderWidget(vm.pageId, start, end)
                 .then(
                     function (response) {
-                        console.log("geting called");
+
                         init();
                     });
         }

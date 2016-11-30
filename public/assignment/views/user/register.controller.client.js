@@ -30,7 +30,7 @@
 
 
                             var newUser={
-                                _id:(new Date()).getTime()+"",
+                                //_id:(new Date()).getTime()+"",
                                 "firstName":username,
                                 "lastName": username,
                                 "username":username,
@@ -43,7 +43,7 @@
                                     var success = response.data;
 
                                     if(success){
-                                        $location.url("/user/"+newUser._id)
+                                        $location.url("/user/"+success._id)
                                     }
                                     else{
                                         $location.url("/login");
