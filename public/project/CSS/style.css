@@ -6,3 +6,114 @@ body {
     height: 100%;
     background-color: white;
 }
+
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+}
+
+.navbar-default
+{
+    background-color: #3d96bd
+}
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.navbar-default .navbar-brand {
+    color: white;
+
+}
+
+.navbar-header
+{
+    float: none;
+}
+
+.glyphicon-ok:before {
+    margin: 10px;
+    color: white;
+}
+
+.glyphicon-user:before {
+    margin: 10px;
+    color: white;
+}
+
+.glyphicon-plus:before {
+    margin: 10px;
+
+    color: white;
+}
+.glyphicon-chevron-left:before{
+    margin : 10px;
+    color : white;
+}
+
+.list-group-item
+{
+    border: none
+}
+
+.jga-widget-tool {
+    position: absolute;
+    right: 15px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 0.7;
+}
+
+.verticalLine {
+    width:1px;
+    background-color: lightgray;
+    left: 33%;
+    position: absolute;
+    z-index: 5;
+    top:0;
+    bottom: 0;
+}
+
+
+
+.video-container {
+    position:relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+.fill {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden
+}
+.fill img {
+    flex-shrink:0;
+    min-width:100%;
+    min-height:100%
+}

@@ -24,12 +24,13 @@
         </thead>
         <tbody>
         <tr ng-repeat = "movie in model.movies">
-            <td><a href="#/movie/{{movie.imdbID}}/{{movie.Title}}">{{movie.Title}}</a></td>
-            <td>{{movie.Year}}</td>
-            <td><img ng-src = "{{movie.Poster}}" height = "100px"/></td>
+            <td><a href="#/movie/{{movie.id}}/{{movie.title}}">{{movie.title}}</a></td>
+            <td>{{movie.release_date}}</td>
+            <td ng-if="movie.poster_path"><img ng-src = "https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" height = "100px"/></td>
         </tr>
         </tbody>
     </table>
+
 </div>
 </body>
 </html>

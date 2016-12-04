@@ -1,39 +1,104 @@
 
 <div class="container-fluid">
-    <h1>
 
     <a href = "#/home/{{model.title}}">
 
         <span class = "glyphicon glyphicon-chevron-left"></span>
     </a>
-        {{model.movie.Title}}
-    </h1>
-    <div class = "row">
-        <div class = "col-xs-6">
-    <div>
-        Directed by: {{model.movie.Director}}
-    </div>
-            <div>
-                Rated: {{model.movie.Rated}}
+            <!--Movie Name -->
+            <h3 ><b>{{model.movie.title}} ({{model.movie.release_date  | date: 'yyyy'}})</b></h3>
+
+            <!-- Movie Genre and Release Date-->
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4  class="page-header"><b>Genre</b></h4>
+                    <h5 ng-repeat="genre in model.movie.genres | limitTo:2">
+                        {{genre.name}}
+                    </h5>
+                </div>
+
+                <div class="col-xs-6">
+                    <h4  class="page-header"><b>Release Date</b></h4>
+                    <div ng-if="!model.released">
+                        <br/><br/><br/>
+                    </div>
+
+                    <h5 ng-bind="model.movie.release_date | date: 'mediumDate'"></h5>
+                </div>
             </div>
-            <div>
-                Released: {{model.movie.Released}}
+
+            <!-- IMDB Rating and Film Nerd Rating -->
+            <p></p>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4  class="page-header"><b>IMDB critics Rating</b></h4>
+                    <div ng-model="model.movie.criticsRating"
+                         class="meter">
+
+                        <meter class="meter" min="0" max="5" value="{{model.movie.criticsRating}}"></meter>
+                        <p> <h5 class="rating">{{model.movie.criticsRating}}</h5>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <h4  class="page-header"><b>FilmNerd Rating</b></h4>
+                    <div ng-model="model.movie.usersRating"
+                         class="meter">
+
+                        <meter class="meter" min="0" max="5" value="{{model.avgRating}}"></meter>
+                        <p> <h5 class="rating">{{model.avgRating}}</h5>
+                        </p>
+                    </div>
+
+                </div>
             </div>
-            <div>
-                Plot: {{model.movie.Plot}}
+            <p></p>
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- Movie Poster-->
+                    <div class="fill">
+                        <img class="img paddingtop20" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">
+                    </div>
+                    <!--<img class="img img-responsive profile" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">-->
+
+                </div>
+
+                <p></p>
+                <!-- Youtube Trailer-->
+                <div class="col-sm-9">
+                    <div class="video-container">
+                        <iframe  width = "100%"
+                                 ng-src="{{model.movie.video_path}}"
+                                 frameborder="0" allowfullscreen=""></iframe>
+                    </div>
+                </div>
             </div>
-            <div>
-                <ul>
-                    <li ng-repeat = "actor in model.movie.Actors.split(',')">
-                        {{actor}}
-                    </li>
-                </ul>
+
+            <!-- Movie Summary-->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="page-header">Summary</h3>
+                    <p class="justifytext">{{model.movie.overview}}</p>
+                </div>
             </div>
-    </div>
-        <div class = "col-xs-6">
-            <img ng-src = "{{model.movie.Poster}}" height = "300px"/>
-        </div>
-    </div>
+
+            <!-- Cast of the Movie -->
+            <div class="row">
+                <div class="col-xs-12 ">
+                    <h3 class="page-header">Cast</h3>
+                    <h2></h2>
+                    <ul class="list-inline">
+                        <li class="w92"  ng-repeat="actor in model.movie.credits.cast"
+                            ng-if="actor.profile_path">
+                            <a href="#/cast/{{actor.id}}">
+                                <img ng-src="https://image.tmdb.org/t/p/w92{{actor.profile_path}}"></a>
+                            <a class="title makeblack" href="#/cast/{{actor.id}}">{{actor.name}}</a>
+                            <!-- replace p with a to move to cast page -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
 </div>
 

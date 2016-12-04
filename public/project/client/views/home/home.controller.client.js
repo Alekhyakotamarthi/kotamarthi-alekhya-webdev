@@ -18,6 +18,10 @@
                $location.path("/home/"+vm.title);
                searchMovieByTitle(vm.title);
            }
+           MovieService.findNowPlaying()
+               .success(function(result){
+                   vm.movies = result.results;
+               })
         }
         init();
 
@@ -26,7 +30,9 @@
             var url = "http://omdbapi.com/?s="+vm.title;
             MovieService.searchMovieByTitle(vm.title)
                 .success(function(result){
-                    vm.movies = result.Search;
+
+                    vm.movies = result.results;
+                    console.log(vm.movies);
                 });
 
         }

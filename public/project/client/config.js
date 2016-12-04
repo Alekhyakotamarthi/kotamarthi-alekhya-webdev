@@ -8,7 +8,7 @@
     function Configure ($routeProvider) {
         console.log("in config");
         $routeProvider
-            .when("/home", {
+            .when("/user/:uid/home", {
 
                 templateUrl: "views/home/home.view.client.html",
                 controller: "HomeController",
@@ -20,14 +20,32 @@
                     controller: "MovieDetailsController",
                     controllerAs: "model"
                 })
-            .when("/home/:title", {
+            .when("user/:uid/home/:title", {
 
                 templateUrl: "views/home/home.view.client.html",
                 controller: "HomeController",
                 controllerAs: "model"
             })
+            .when("/login", {
+
+                templateUrl: "views/user/login.view.client.html",
+                controller: "LoginController",
+                controllerAs: "model"
+            })
+            .when("/register", {
+
+                templateUrl: "views/user/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid", {
+
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model"
+            })
             .otherwise({
-                redirectTo: "/home"
+                redirectTo: "/login"
             });
     }
 })();
