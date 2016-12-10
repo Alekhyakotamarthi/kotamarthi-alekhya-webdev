@@ -13,6 +13,7 @@ module.exports = function(){
         findUserByUsername: findUserByUsername,
         deleteUser: deleteUser,
         updateUser: updateUser,
+        findUserByGoogleId:findUserByGoogleId,
 
     };
 
@@ -21,10 +22,18 @@ module.exports = function(){
      function findUserById(userId){
       return User.findById(userId)
      }
+
+     function findUserByGoogleId(googleId){
+
+         return User
+             .findOne({"google.id":googleId})
+
+     }
      function findUserByUsername(username){
          return User.findOne({username:username})
      }
      function findUserByCredentials(username,password){
+
          return User.findOne({username: username,password:password})
      }
      function deleteUser(userId){

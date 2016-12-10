@@ -39,9 +39,13 @@
         <a class="btn btn-primary btn-block"
            href="#/user/{{model.user._id}}/website">Websites</a>
         <a class="btn btn-danger  btn-block"
-                                         href="#/login">Logout</a>
-                      <a  class="btn btn-danger  btn-block"
+                                         ng-click="model.logout()">Logout</a>
+                      <a  class="btn btn-warning  btn-block"
                           ng-click="model.deleteUser(model.user._id)" >Unregister</a>
+        <a  class="btn btn-warning  btn-block"
+                        ng-show = "model.user.role=='ADMIN'"
+                        href=#/admin >Admin</a>
+
         <div ng-show="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>

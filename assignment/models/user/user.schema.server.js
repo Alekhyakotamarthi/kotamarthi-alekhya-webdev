@@ -11,7 +11,14 @@ module.exports = function(){
                     firstName: String,
                     lastName: String,
                     dob: Date,
-                     dateCreated: {type: Date, default: Date.now}
+                     email: String,
+                        role: {type:String, enum: ['ADMIN','STUDENT','FACULTY']},
+                     dateCreated: {type: Date, default: Date.now},
+                    google:{
+                         id: String,
+                        email : String,
+
+                    },
 
     },{collection: "assignment.user"});
 

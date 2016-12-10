@@ -16,12 +16,43 @@
             findUserByUsername: findUserByUsername,
             createUser: createUser,
             deleteUser: deleteUser,
+            login: login,
+            checkLogin: checkLogin,
+            logout: logout,
+            findCurrentUser:findCurrentUser,
+            checkAdmin:checkAdmin,
         };
         return api;
 
         function findUserByCredentials(username, password) {
             var url="/api/project/user?username="+username+"&password="+password;
 
+            return $http.get(url);
+        }
+
+        function logout(){
+            return $http.post("/api/project/logout");
+        }
+
+        function checkLogin(){
+            return $http.post("/api/project/checkLogin");
+        }
+
+        function login(username,password){
+            var user ={
+                username :username,
+                password: password,
+            }
+            return $http.post("/api/project/login",user);
+        }
+
+        function checkAdmin(){
+            return $http.post("/api/project/checkAdmin");
+        }
+
+        function findCurrentUser(){
+
+            var url = "/api/project/user";
             return $http.get(url);
         }
 
@@ -42,7 +73,8 @@
 
         }
 
-                 function deleteUser(uid){
+
+        function deleteUser(uid){
             console.log("at client server"+uid);
             var url = "/api/project/user/"+uid;
             return $http.delete(url);
@@ -50,8 +82,8 @@
 
         function updateUser(userId, user) {
 
-                     var url ="/api/project/user/"+userId;
-                     return $http.put(url,user);
+            var url ="/api/project/user/"+userId;
+            return $http.put(url,user);
 
         }
     }

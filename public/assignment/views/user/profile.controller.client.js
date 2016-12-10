@@ -12,22 +12,36 @@
 
         var vm=this;
         vm.updateUser=updateUser;
+                    vm.logout = logout;
         vm.deleteUser = deleteUser;
-        vm.id=$routeParams.uid;
+                 // vm.id=$routeParams.uid;
         function init() {
-            UserService.findUserById(vm.id)
+            UserService
+                //.findUserById(vm.id)
+                .findCurrentUser()
                 .success(function(response){
                         vm.user = response;
-                    console.log(vm.user);
+                        vm.id = vm.user._id;
+                    console.log(vm.id);
+                    console.log("here in controller");
+                    console.log(vm.id);
 
                 })
 
         }
         init();
 
-        function updateUser(newUser) {
+        function logout(){
+            UserService.logout()
+                .success(function(){
+                   $location.url("/login") ;
+                });
+        }
 
+        function updateUser(newUser) {
+            console.log("check now",vm.id);
             UserService.updateUser(vm.id,newUser)
+
                 .success(function(user){
                     console.log(vm.user);
                     $location.url("/user/"+vm.user._id);

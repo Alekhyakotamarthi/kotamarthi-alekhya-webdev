@@ -13,23 +13,32 @@ module.exports = function(){
         findUserByUsername: findUserByUsername,
         deleteUser: deleteUser,
         updateUser: updateUser,
+        findUserByGoogleId:findUserByGoogleId,
 
     };
 
     return api;
 
-     function findUserById(userId){
-      return User.findById(userId)
-     }
-     function findUserByUsername(username){
-         return User.findOne({username:username})
-     }
-     function findUserByCredentials(username,password){
-         return User.findOne({username: username,password:password})
-     }
-     function deleteUser(userId){
-         return User.remove({_id:userId});
-     }
+    function findUserById(userId){
+        return User.findById(userId)
+    }
+
+    function findUserByGoogleId(googleId){
+
+        return User
+            .findOne({"google.id":googleId})
+
+    }
+    function findUserByUsername(username){
+        return User.findOne({username:username})
+    }
+    function findUserByCredentials(username,password){
+
+        return User.findOne({username: username,password:password})
+    }
+    function deleteUser(userId){
+        return User.remove({_id:userId});
+    }
     function createUser(user){
         console.log("user.model.server.createUser()")
         console.log(user);
@@ -37,7 +46,7 @@ module.exports = function(){
     }
     function updateUser(userId,newuser)
     {
-                 return User.update({_id:userId},{$set:{firstName:newuser.firstName,
-                                                lastName:newuser.lastName}});
+        return User.update({_id:userId},{$set:{firstName:newuser.firstName,
+            lastName:newuser.lastName}});
     }
 };

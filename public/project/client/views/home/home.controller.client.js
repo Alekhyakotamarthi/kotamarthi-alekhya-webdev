@@ -10,6 +10,7 @@
     function HomeController(MovieService,$routeParams,$location) {
         console.log("in controller");
         var vm =this;
+        vm.uid = $routeParams.uid;
         vm.searchMovieByTitle = searchMovieByTitle;
 
         vm.title = $routeParams.title;

@@ -12,7 +12,7 @@ mongoose.connect(connectionString);
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
-//var assignment=require("./assignment/app");
+var assignment=require("./assignment/app");
 var project=require("./project/app");
 project(app);
 //assignment(app);

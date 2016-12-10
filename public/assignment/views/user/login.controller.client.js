@@ -6,7 +6,8 @@
     function LoginController($location,UserService) {
                     var vm =this;
                     vm.login= function(username,password){
-                        var promise =  UserService.findUserByCredentials(username,password)
+                        //var promise =  UserService.findUserByCredentials(username,password)
+                        var promise =  UserService.login(username,password)
                         promise
                             .success(function(user)
                         {

@@ -16,12 +16,43 @@
             findUserByUsername: findUserByUsername,
             createUser: createUser,
             deleteUser: deleteUser,
+            login: login,
+            checkLogin: checkLogin,
+            logout: logout,
+            findCurrentUser:findCurrentUser,
+                     checkAdmin:checkAdmin,
         };
         return api;
 
         function findUserByCredentials(username, password) {
             var url="/api/user?username="+username+"&password="+password;
 
+            return $http.get(url);
+        }
+
+        function logout(){
+            return $http.post("/api/logout");
+        }
+
+        function checkLogin(){
+                      return $http.post("/api/checkLogin");
+        }
+
+        function login(username,password){
+            var user ={
+                username :username,
+                password: password,
+            }
+            return $http.post("/api/login",user);
+        }
+
+                   function checkAdmin(){
+                      return $http.post("/api/checkAdmin");
+        }
+
+        function findCurrentUser(){
+
+            var url = "/api/user";
             return $http.get(url);
         }
 

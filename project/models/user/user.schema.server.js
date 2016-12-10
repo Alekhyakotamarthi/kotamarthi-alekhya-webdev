@@ -10,11 +10,48 @@ module.exports = function(){
                      password :String,
                     firstName: String,
                     lastName: String,
-                    dob: Date,
-                     dateCreated: {type: Date, default: Date.now}
+                     email: String,
+                 role: {type: String, enum: ['ENDUSER', 'ADMIN']},
+            dateCreated: {type: Date, default: Date.now},
+                 google: {
+                     id:    String,
+                     token: String
+                         },
+                   ratings: [
+                   {
+                name: String,
+                tmdbId: String,
+                rating: Number,
+                poster_url: String
+                   }
+                  ],
 
-    },{collection: "project.user"});
+        reviews: [
+            {
+                name: String,
+                tmdbId: String,
+                review: String,
+                poster_url: String
+            }
+        ],
+        //
+        follows: [
+            {
+                userId: String,
+                username: String
 
+            }
+
+        ],
+
+            followedby: [
+                {
+                    userId: String,
+                    username: String,
+                }
+            ]
+             }
+
+             , {collection: 'project.user'});
     return UserSchema;
-
 };

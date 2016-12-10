@@ -12,10 +12,10 @@
             <div class="row">
                 <div class="col-xs-6">
                     <h4  class="page-header"><b>Genre</b></h4>
-                    <h5 ng-repeat="genre in model.movie.genres | limitTo:2">
+                    <div ng-repeat="genre in model.movie.genres | limitTo:2">
                         {{genre.name}}
-                    </h5>
-                </div>
+                    </div>
+
 
                 <div class="col-xs-6">
                     <h4  class="page-header"><b>Release Date</b></h4>
@@ -26,6 +26,8 @@
                     <h5 ng-bind="model.movie.release_date | date: 'mediumDate'"></h5>
                 </div>
             </div>
+
+
 
             <!-- IMDB Rating and Film Nerd Rating -->
             <p></p>
@@ -52,7 +54,17 @@
                     </div>
 
                 </div>
+
+                <div>
+                    <input ng-model ="newrating"
+                           type="string"
+                           class="form-control"
+                           placeholder="Enter Rating"/>
+                    <a ng-click = "model.RateMovie(newrating)"
+                       class="btn btn-primary btn-block">Rate It!</a>
+                    </div>
             </div>
+                </div>
             <p></p>
             <div class="row">
                 <div class="col-sm-3">
@@ -100,5 +112,5 @@
                 </div>
             </div>
 
-</div>
+
 
