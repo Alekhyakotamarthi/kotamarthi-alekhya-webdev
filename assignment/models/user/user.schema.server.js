@@ -20,6 +20,12 @@ module.exports = function(){
 
                     },
 
+        facebook:{
+            token:String,
+            id:String,
+            displayName:String
+        },
+
     },{collection: "assignment.user"});
 
     return UserSchema;

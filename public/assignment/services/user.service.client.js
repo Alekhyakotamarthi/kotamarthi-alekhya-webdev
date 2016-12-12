@@ -16,6 +16,7 @@
             findUserByUsername: findUserByUsername,
             createUser: createUser,
             deleteUser: deleteUser,
+            register: register,
             login: login,
             checkLogin: checkLogin,
             logout: logout,
@@ -48,6 +49,10 @@
 
                    function checkAdmin(){
                       return $http.post("/api/checkAdmin");
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
         }
 
         function findCurrentUser(){

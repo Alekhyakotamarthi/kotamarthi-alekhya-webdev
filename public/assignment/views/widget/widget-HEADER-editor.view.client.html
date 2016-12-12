@@ -1,11 +1,42 @@
+<nav class="navbar navbar-default navbar-fixed-top" >
 
+
+        <div class="navbar-header">
+            <div class="navbar-text pull-left" style="margin-left: 0px;">
+                <a href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <a class="navbar-brand" href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.wgid}}">
+                Widget Edit
+            </a>
+            <div class="navbar-text pull-right" style="margin-right: 0px;">
+
+                <a ng-click="myForm.$valid&&model.updateWidget(model.widget);submitted=true">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+</nav>
 
 <div class="container-fluid">
-    <form>
-        <div class="form-group">
-            <label for="widgetname">Name</label>
-                 <input ng-model = "model.widget.name" type="text" class="form-control" id="widgetname" placeholder="Gizmodo">
-        </div>
+    <form name="myForm" ng-app>
+    <div class="form-group">
+        <label for="widget-name">Name</label>
+        <input ng-model="model.widget.name"
+               required
+               ng-class="{ 'error-when' : submitted && myForm.name.$error.required }"
+               name="name"
+               type="text"
+               class="form-control"
+               placeholder="Gizmodo"
+               id="widget-name">
+    </div>
+    <span ng-show="submitted && myForm.name.$error.required"
+          class="error">
+            *Required Field
+        </span>
+
         <div class="form-group">
             <label for="widgettext">Text</label>
             <input ng-model = "model.widget.text" type="text" class="form-control" id="widgettext" placeholder="US Senate Reaches Compromise on Energy">
@@ -26,27 +57,7 @@
         <a href="#/user/{{model.id}}" role="button">
             <span class="glyphicon glyphicon-user pull-right navbar-text"></span>
 
-        </a><nav class="navbar navbar-default navbar-fixed-top" >
-
-        <div class="container-fluid">
-
-            <div class="navbar-header">
-                <div class="navbar-text pull-left" style="margin-left: 0px;">
-                    <a href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                </div>
-                <a class="navbar-brand" href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.wgid}}">
-                    Widget Edit
-                </a>
-                <div class="navbar-text pull-right" style="margin-right: 0px;">
-                    <a ng-click="model.updateWidget(model.widget)">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+        </a>
 
     </div>
 </nav>

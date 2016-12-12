@@ -4,6 +4,10 @@ module.exports = function(app,model){
     userModel = model.userModel
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
+
+    var bcrypt = require("bcrypt-nodejs");
+
+    var FacebookStrategy = require('passport-facebook').Strategy;
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -20,7 +24,18 @@ passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
-var users = [
+
+    var facebookConfig = {
+        clientID     : "649200351939749",
+        clientSecret :  "05248f956f5c2ae312acf4a8b8a1196d",
+        callbackURL  : "http://localhost:3000/auth/facebook/callback"
+    };
+
+
+
+
+
+    var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
@@ -33,7 +48,10 @@ var users = [
         callbackURL  : "http://127.0.0.1:3000/auth/google/callback"
     };
 
+
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    passport.use('facebook',new FacebookStrategy(facebookConfig,facebookLogin));
 
 app.get("/api/user",getUser);
 app.get("/api/user/:userId",findUserById);
@@ -43,7 +61,7 @@ app.delete("/api/user/:userId",loggedInAndSelf,deleteUser);
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.post("/api/login",passport.authenticate('local') ,login);
     app.post("/api/checkLogin",checkLogin);
-
+    app.post ('/api/register', register);
     app.post("/api/checkAdmin",checkAdmin);
     app.post("/api/logout",logout);
     app.get('/auth/google/callback',
@@ -52,6 +70,39 @@ app.delete("/api/user/:userId",loggedInAndSelf,deleteUser);
             failureRedirect: '/assignment/index.html#/login'
         }));
 
+    app.get("/auth/facebook",passport.authenticate('facebook'));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        successRedirect: '/assignment/index.html#/user',
+        failureRedirect: '/assignment/index.html#/login'
+    }));
+
+
+    function facebookLogin(token, refreshToken, profile, done) {
+        console.log(profile);
+        userModel
+            .findUserbyFBid(profile.id)
+            .then(function (facebookUser) {
+                if(facebookUser){
+                    return done(null,facebookUser);
+                }
+                else{
+                    facebookUser={
+                        username:profile.displayName.replace(/ /g,' '),
+                        facebook:{
+                            token:token,
+                            id:profile.id,
+                            displayName:profile.displayName
+                        }
+                    }
+                    userModel
+                        .createUser(facebookUser)
+                        .then(function (user) {
+                            done(null,user);
+                        })
+                }
+            })
+
+    }
 
     function loggedInAndSelf(req,res,next){
                      var loggedin = req.isAuthenticated();
@@ -105,10 +156,32 @@ app.delete("/api/user/:userId",loggedInAndSelf,deleteUser);
             );
     }
 
+
+
     function logout(req,res){
         req.logout();
         res.send(200);
 
+    }
+
+    function register (req, res) {
+        var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
+        userModel
+            .createUser(user)
+    .then(
+            function(user){
+                if(user){
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.status(400).send(err);
+                        } else {
+                            res.json(user);
+                        }
+                    });
+                }
+            }
+        );
     }
     function checkLogin(req,res){
         res.send(req.isAuthenticated()? req.user: '0');
@@ -128,13 +201,21 @@ app.delete("/api/user/:userId",loggedInAndSelf,deleteUser);
 function localStrategy(username,password,done) {
 
 
-    userModel.findUserByCredentials(username,password)
+    userModel.findUserByUsername(username)
         .then(
             function (user) {
-                if(!user) {
+                //console.log("here are the passwords");
+                //console.log(user);
+                //console.log(password);
+               // console.log(user.password);
+                if(user && bcrypt.compareSync(password, user.password))
+                {
+                    return done(null, user);
+                }
+                else {
                     return done(null, false);
                 }
-                return done(null,user);
+
             },
             function (error) {
                 res.sendStatus(400).send(error);

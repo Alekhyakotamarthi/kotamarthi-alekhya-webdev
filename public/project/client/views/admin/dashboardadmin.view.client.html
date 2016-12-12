@@ -1,0 +1,48 @@
+
+
+<
+    <div class="container-fluid">
+        <!-- Search Box -->
+        <div class="input-group">
+            <input ng-model = "model.movieName"
+                   type="text"
+                   placeholder="enter movie name.. Eg: Inception"
+                   class="form-control ng-pristine ng-valid ng-touched">
+            <span class="input-group-btn ">
+                   <a href ="#/search/{{model.movieName}}"
+                      class="btn btn-info makegray"
+                      type="button">
+                       <span class="glyphicon glyphicon-search"></span>
+                   </a>
+                </span>
+        </div>
+
+        <div class="container container-fluid pushdown">
+            <div class="container">
+                <a class="btn btn-success btn-block makeblue"
+                   href="#/manageflaggedreviews">Manage Flagged Reviews
+                </a>
+            </div>
+            <p></p>
+            <div class="container">
+                <a class="btn btn-success btn-block makeblue"
+                   href="#/admin/usermanagement">Go To User Management Dashboard
+                </a>
+            </div>
+            <p></p>
+
+            <p></p>
+            <div class="container">
+                <a class="btn btn-success btn-block makeblue"
+                   href="#/managemovies">Manage Ratings and Reviews
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+

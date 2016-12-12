@@ -5,6 +5,7 @@ module.exports = function(app,model){
     var passport = require('passport');
     var cookieParser = require('cookie-parser');
     var session = require('express-session');
+    var session = require('express-session');
     var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
@@ -43,16 +44,37 @@ module.exports = function(app,model){
             app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
                  app.post("/api/project/login",passport.authenticate('local') ,login);
                      app.post("/api/project/checkLogin",checkLogin);
-
+                        app.put("/api/project/:userId/reviewandrating",updatereviewsandratings)
                      app.post("/api/project/checkAdmin",checkAdmin);
                  app.post("/api/project/logout",logout);
+    app.put("/api/project/user/follows/:userId", followUser);
+    app.put("/api/project/user/:userId/unfollows/:username", unfollowUser);
+    app.get('/api/project/searchallusers', searchallusers);
                         app.get('/auth/google/callback',
+
         passport.authenticate('google', {
             successRedirect: '/project/client/index.html#/user',
             failureRedirect: '/project/client/index.html#/login'
         }));
 
 
+    function updatereviewsandratings(req,res){
+
+        var id = req.params.userId;
+                var ratingandreview = req.body;
+
+        userModel
+                 .updatereviewsandratings(id, ratingandreview)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+
+    }
     function loggedInAndSelf(req,res,next){
         var loggedin = req.isAuthenticated();
         var userId = req.params.userId;
@@ -68,6 +90,20 @@ module.exports = function(app,model){
         }
     }
 
+    function searchallusers(req,res)
+    {
+        userModel
+            .searchallusers()
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+
+    }
     function googleStrategy(token, refreshToken, profile, done) {
         userModel
             .findUserByGoogleId(profile.id)
@@ -111,6 +147,8 @@ module.exports = function(app,model){
 
     }
     function checkLogin(req,res){
+
+        console.log("here in checklogin");
         res.send(req.isAuthenticated()? req.user: '0');
     }
 
@@ -289,6 +327,40 @@ module.exports = function(app,model){
         //  }
         // }
         // res.send(null);
+    }
+
+    function followUser(req, res) {
+        var id = req.params.userId;
+        var follows = req.body;
+
+        userModel
+            .followUser(id, follows)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+
+    function unfollowUser(req, res) {
+        var id = req.params.userId;
+        var username = req.params.username;
+
+        console.log(id +" "+username);
+
+        userModel
+            .unfollowUser(id, username)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
     }
     function deleteUser(req,res){
         var id=req.params.userId;

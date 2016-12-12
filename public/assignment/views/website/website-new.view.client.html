@@ -29,7 +29,7 @@
                 <a class="navbar-brand pull-left" href="#/user/{{model.id}}/website/new">
                     New Website
                 </a>
-                <a ng-click="model.createWebsite(name,description)">
+                <a ng-click="WebsiteNewForm.$valid&&model.createWebsite(name,description) ;submitted = true">
                     <span class="glyphicon  glyphicon-ok navbar-text pull-right"></span>
                 </a>
             </div>
@@ -58,10 +58,19 @@
     <div class="verticalLine hidden-sm hidden-xs"></div>
 
     <div class="col-sm-8 col-xs-12">
-        <form>
-            <div class="form-group">
-                <label for="website-name">Website Name</label>
-                <input type="text" class="form-control" ng-model="name" id="website-name" placeholder="Blogger">
+
+        <form name="WebsiteNewForm" ng-app>
+
+            <div class = "form-group"><label for="name">Website Name</label>
+            <input ng-model ="name"
+                   name="name"
+                   required
+                   id="name"
+                   ng-class="{true: 'error'}[submitted && WebsiteNewForm.name.$error.required]"
+                   type="text"
+                   class="form-control"
+                   placeholder="Blogger"/>
+            <span class="error" ng-show="submitted && WebsiteNewForm.name.$error.required">Website name is required</span>
             </div>
             <div class="form-group">
                 <label for="website-description">Website Description</label>

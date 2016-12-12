@@ -48,21 +48,28 @@
                     <div ng-model="model.movie.usersRating"
                          class="meter">
 
-                        <meter class="meter" min="0" max="5" value="{{model.avgRating}}"></meter>
-                        <p> <h5 class="rating">{{model.avgRating}}</h5>
+                        <meter class="meter" min="0" max="5" value="{{model.ratingAvg}}"></meter>
+                        <p> <h5 class="rating">{{model.ratingAvg}}</h5>
                         </p>
                     </div>
 
                 </div>
 
                 <div>
+
+
                     <input ng-model ="newrating"
-                           type="string"
+                           type="number"
                            class="form-control"
                            placeholder="Enter Rating"/>
-                    <a ng-click = "model.RateMovie(newrating)"
-                       class="btn btn-primary btn-block">Rate It!</a>
-                    </div>
+                    <input ng-model ="newreview"
+                           type="string"
+                           class="form-control"
+                           placeholder="Enter Review"/>
+                    <a ng-click = "model.checkRating(newrating,newreview,model.movie)"
+                       class="btn btn-primary btn-block">Rate The Movie!</a>
+
+                </div>
             </div>
                 </div>
             <p></p>
@@ -111,6 +118,49 @@
                     </ul>
                 </div>
             </div>
+
+    <div ng-if="model.givecheckoutusererror"
+         class="alert alert-danger">
+        {{model.givecheckoutusererror}}
+    </div>
+    <h3 class="page-header">User Reviews</h3>
+
+    <div   ng-repeat = "rev in model.movieReviews.reviews" >
+
+            <div class="row">
+                <div>
+                <!-- Username -->
+
+                    <a href="#/user/profile/{{rev.username}}">
+                        <h3 class="glyphicon glyphicon-user makeblack"> {{rev.username}}
+                        </h3>
+                    </a>
+
+
+                <!-- Report Button-->
+                <a  type="button " ng-click="model.reportReview(rev._id)"
+                    class=" reportbutton btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-exclamation-sign  "></span> Report
+                </a>
+
+                </div>
+
+            </div>
+
+
+            <!--Review text-->
+            <div  class="row">
+                <div class="col-xs-12">
+                    <p>{{rev.text}}</p>
+                </div>
+            </div>
+
+
+
+    </div>
+
+</div>
+
 
 
 

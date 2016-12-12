@@ -14,6 +14,10 @@ module.exports = function(){
         deleteUser: deleteUser,
         updateUser: updateUser,
         findUserByGoogleId:findUserByGoogleId,
+        searchallusers:searchallusers,
+        updatereviewsandratings: updatereviewsandratings,
+        followUser: followUser,
+        unfollowUser : unfollowUser,
 
     };
 
@@ -21,6 +25,27 @@ module.exports = function(){
 
     function findUserById(userId){
         return User.findById(userId)
+    }
+
+    function updatereviewsandratings(id, ratingandreview){
+                     var rating = ratingandreview.rating;
+                     var review = ratingandreview.review;
+
+        //console.log(rating);
+        //console.log(review);
+        //console.log(id);
+                 return User
+                      .update({_id: id},
+                {$push: {ratings: rating,
+                    reviews : review }}
+            );
+    }
+
+    function searchallusers()
+    {
+
+            return User.find();
+
     }
 
     function findUserByGoogleId(googleId){
@@ -48,5 +73,27 @@ module.exports = function(){
     {
         return User.update({_id:userId},{$set:{firstName:newuser.firstName,
             lastName:newuser.lastName}});
+    }
+
+    function unfollowUser(id, username) {
+        return User.update(
+            {_id: id},
+            {
+                $pull: {
+                    follows:
+                    {
+                        username: username
+                    }
+                }
+            }
+        );
+    }
+
+
+    function followUser(id, follows) {
+        return User
+            .update({_id: id},
+                {$push: {follows: follows}}
+            );
     }
 };

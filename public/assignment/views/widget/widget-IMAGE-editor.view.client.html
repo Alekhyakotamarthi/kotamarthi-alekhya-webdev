@@ -15,7 +15,7 @@
                 Widget Edit
             </a>
             <div class="navbar-text pull-right" style="margin-right: 0px;">
-                <a ng-click="model.updateWidget(model.widget)">
+                <a ng-click="myForm.$valid&&model.updateWidget(model.widget);submitted=true">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -23,11 +23,22 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <form>
+    <form name="myForm" ng-app>
         <div class="form-group">
-            <label for="widgetname">Name</label>
-            <input ng-model="model.widget.name" type="text" class="form-control" id="widgetname" placeholder="Gizmodo">
+            <label for="widget-name">Name</label>
+            <input ng-model="model.widget.name"
+                   required
+                   ng-class="{ 'error-when' : submitted && myForm.name.$error.required }"
+                   name="name"
+                   type="text"
+                   class="form-control"
+                   placeholder="Gizmodo"
+                   id="widget-name">
         </div>
+        <span ng-show="submitted && myForm.name.$error.required"
+              class="error">
+            *Required Field
+        </span>
         <div class="form-group">
             <label for="widgettext">Text</label>
             <input ng-model="model.widget.text" type="text" class="form-control" id="widgettext" placeholder="US Senate Reaches Compromise on Energy">

@@ -31,7 +31,7 @@
                 <a class="navbar-brand pull-left" href="#/user/{{model.id}}/website/{{website._id}}">
                     Edit Website
                 </a>
-                <a ng-click="model.updateWebsite(model.website.name,model.website.description)">
+                <a ng-click="WebsiteEditForm.$valid&&model.updateWebsite(model.website.name,model.website.description);submitted = true">
                     <span class="glyphicon  glyphicon-ok navbar-text pull-right"></span>
                 </a>
             </div>
@@ -60,10 +60,18 @@
     <div class="verticalLine hidden-sm hidden-xs"></div>
 
     <div class="col-sm-8 col-xs-12">
-        <form>
+        <form name="WebsiteEditForm" ng-app>
             <div class="form-group">
-                <label for="website-name">Website Name</label>
-                <input type="text" ng-model="model.website.name" class="form-control" id="website-name">
+                <label for="name">Website Name</label>
+            <input ng-model="model.website.name"
+                   name="name"
+                   required
+                   id="name"
+                   ng-class="{true: 'error'}[submitted && WebsiteEditForm.name.$error.required]"
+                   type="text"
+                   class="form-control"
+                   placeholder="Blogger"/>
+            <span class="error" ng-show="submitted && WebsiteEditForm.name.$error.required">Website name is required</span>
             </div>
             <div class="form-group">
                 <label for="website-description">Website Description</label>

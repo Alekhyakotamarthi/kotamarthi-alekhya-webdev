@@ -32,9 +32,21 @@
                 }
             )
 
+            .when("/user/profile/:username", {
+                    templateUrl: "views/user/viewanotherprofile.view.client.html",
+                    controller: "FollowController",
+                    controllerAs: "model",
+                    resolve: {
+                        checkLogin: checkLogin
+                    }
+                }
+
+
+            )
+
             .when("/admin", {
-                    templateUrl: "views/admin/user-list.view.client.html",
-                    controller: "UserListController",
+                    templateUrl: "views/admin/dashboardadmin.view.client.html",
+                    controller: "AdminDashboardController",
                     controllerAs: "model",
                     resolve: {
                         checkAdmin:checkAdmin
@@ -42,11 +54,35 @@
                 }
             )
 
+            .when("/admin/usermanagement", {
+                    templateUrl: "views/admin/usermanagement.view.client.html",
+                    controller: "UserManagementController",
+                    controllerAs: "model",
+                    resolve: {
+                        checkAdmin:checkAdmin
+                    }
+                }
+            )
+
+
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
                 resolve: {
+
+                    checkLogin: checkLogin
+                }
+
+            })
+
+            .when("#/dashboardadmin",{
+
+                templateUrl: "views/admin/dashboardadmin.view.client.html",
+                controller: "AdminDashboardController",
+                controllerAs: "model",
+                resolve: {
+
                     checkLogin: checkLogin
                 }
 
@@ -69,18 +105,14 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
-            .when("/user/:uid", {
 
-                templateUrl: "views/user/profile.view.client.html",
-                controller: "ProfileController",
-                controllerAs: "model"
-            })
             .otherwise({
                 redirectTo: "/login"
             });
 
         function checkLogin($q,UserService,$location){
             var deferred = $q.defer();
+            console.log("I am here")
             UserService
                 .checkLogin()
                 .success(

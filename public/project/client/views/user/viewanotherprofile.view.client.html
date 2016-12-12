@@ -1,0 +1,115 @@
+
+
+    <div class="container-fluid">
+        <!-- Search Box -->
+        <div class="input-group">
+            <input ng-model = "model.movieName"
+                   type="text"
+                   placeholder="enter movie name.. Eg: Inception"
+                   class="form-control ng-pristine ng-valid ng-touched">
+            <span class="input-group-btn ">
+                   <a href ="#/search/{{model.movieName}}"
+                      class="btn btn-info makegray"
+                      type="button">
+                       <span class="glyphicon glyphicon-search"></span>
+                   </a>
+                </span>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+
+                <h2 class="page-header">{{model.user.firstName}}'s Profile </h2>
+
+
+                <a ng-if="model.notfollowing"
+                   ng-click="model.followUser()"
+                   class="btn btn-primary btn-sm" type="submit">
+                    <span class="glyphicon glyphicon glyphicon-heart"></span>
+                    Follow</a>
+
+
+
+                <a ng-if="model.following"
+                   ng-click="model.unfollowUser()"
+                   class="btn btn-primary btn-sm" type="submit">
+                    <span class="fa fa-heartbeat"></span>
+                    UnFollow {{model.user.firstName}} </a>
+
+
+                <p></p>
+                <div ng-if="model.error"
+                     class="alert alert-danger">
+                    {{model.error}}
+                </div>
+                <p></p>
+                <div ng-if="model.success"
+                     class="alert alert-success">
+                    {{model.success}}
+                </div>
+
+
+
+
+
+
+                </a>
+            </div>
+
+        </div>
+        <!-- Users Reviews -->
+        <div class="container-fluid">
+            <h3>{{model.user.firstName}}'s Reviews</h3>
+
+            <div ng-repeat="reviews in model.user.reviews" class="row">
+
+                <a class="makeblack" href="#/movie/{{reviews.tmdbId}}">
+                    <div class="col-xs-4">
+                        <img ng-src="{{reviews.poster_url}}" width = 70>
+                        <h5>{{reviews.name}}</h5>
+
+                    </div>
+                </a>
+
+                <div class="col-xs-8">
+                    <h4>{{reviews.review}}</h4>
+                </div>
+                <p></p>
+            </div>
+        </div>
+
+
+        <!-- Users Ratings -->
+        <div class="container-fluid">
+            <h3>{{model.user.firstName}}'s Ratings</h3>
+
+            <div ng-repeat="ratings in model.user.ratings" class="row">
+                <a class="makeblack" href="#/movie/{{ratings.tmdbId}}">
+                    <div class="col-xs-5">
+                        <img ng-src="{{ratings.poster_url}}" width = 70>
+
+                        <h5>{{model.user.firstName}} rated: {{ratings.rating}}/5</h5>
+                    </div>
+                </a>
+                <p></p>
+
+            </div>
+
+        </div>
+
+
+        <div class="container ">
+            <h3>{{model.user.firstName}} Follows</h3>
+            <div ng-repeat ="follow in model.user.follows">
+                <li>
+                    <a class="makeblack" href ="#/user/profile/{{follow.username}}">
+                        {{follow.username}}
+                    </a>
+                </li>
+
+            </div>
+        </div>
+
+    </div>
+
+

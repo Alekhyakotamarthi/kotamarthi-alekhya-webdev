@@ -14,24 +14,17 @@ module.exports = function(){
                  role: {type: String, enum: ['ENDUSER', 'ADMIN']},
             dateCreated: {type: Date, default: Date.now},
                  google: {
-                     id:    String,
-                     token: String
+                     id:    String, token: String
                          },
                    ratings: [
                    {
-                name: String,
-                tmdbId: String,
-                rating: Number,
-                poster_url: String
+                       movieName: String, rating: Number, tmdbId: String, poster_url: String
                    }
                   ],
 
         reviews: [
             {
-                name: String,
-                tmdbId: String,
-                review: String,
-                poster_url: String
+                      movieName: String, review: String, tmdbId: String, poster_url: String
             }
         ],
         //

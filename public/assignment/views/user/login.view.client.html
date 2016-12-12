@@ -1,15 +1,25 @@
 
+
     <div class="container">
+
+
+        <form name="Loginform" ng-app>
         <h1>Login</h1>
-        <input ng-model ="username"
+        <input name="username"
+               required
+               ng-model ="username"
+               ng-class="{true: 'error'}[submitted && Loginform.username.$error.required]"
                type="text"
                class="form-control"
                placeholder="username"/>
-        <input ng-model ="password"
+            <span class="error" ng-show="submitted && Loginform.username.$error.required">Username is required</span>
+        <input name="password" ng-model ="password" required
+               ng-class="{true: 'error'}[submitted && Loginform.username.$error.required]"
                type="password"
                class="form-control"
                placeholder="password"/>
-        <a ng-click = "model.login(username,password)"
+            <span class="error" ng-show="submitted && Loginform.password.$error.required">Password is required</span>
+        <a ng-click = "model.login(username,password); submitted=true"
            class="btn btn-primary btn-block">Login</a>
         <a class="btn btn-success btn-block"
            href="#/register">Register</a>
@@ -17,7 +27,14 @@
             <span class="fa fa-google-plus"></span>
             Google
         </a>
+
+        <a  href="/auth/facebook" class="btn btn-primary btn-block">
+            <span class="fa fa-facebook-official"></span>
+            Facebook
+        </a>
         <div ng-show="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>
+
+</form>
     </div>

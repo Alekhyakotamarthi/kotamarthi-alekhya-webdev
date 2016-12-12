@@ -15,11 +15,15 @@
             updateUser: updateUser,
             findUserByUsername: findUserByUsername,
             createUser: createUser,
+            SearchAllUsers:SearchAllUsers,
             deleteUser: deleteUser,
             login: login,
             checkLogin: checkLogin,
             logout: logout,
+            followUser:followUser,
+            unfollowUser:unfollowUser,
             findCurrentUser:findCurrentUser,
+                    submitReviewandRating:submitReviewandRating,
             checkAdmin:checkAdmin,
         };
         return api;
@@ -30,11 +34,20 @@
             return $http.get(url);
         }
 
+        function SearchAllUsers(){
+
+            var url = "/api/project/searchallusers";
+            return $http.get(url);
+
+        }
+
         function logout(){
             return $http.post("/api/project/logout");
         }
 
         function checkLogin(){
+
+            console.log("checking logon")
             return $http.post("/api/project/checkLogin");
         }
 
@@ -85,6 +98,24 @@
             var url ="/api/project/user/"+userId;
             return $http.put(url,user);
 
+        }
+
+                    function  submitReviewandRating(userId,reviewandrating){
+                console.log(userId);
+                console.log(reviewandrating);
+                  var url = "/api/project/"+userId+"/reviewandrating";
+                        return $http.put(url,reviewandrating)
+
+        }
+
+        function followUser(userId, follows) {
+            var url = "/api/project/user/follows/"+ userId;
+            return $http.put(url, follows);
+        }
+
+        function unfollowUser(userId, username) {
+            var url = "/api/project/user/"+ userId+"/unfollows/" +username;
+            return $http.put(url);
         }
     }
 })();

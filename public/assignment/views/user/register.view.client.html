@@ -1,22 +1,50 @@
 
     <div class="container">
+
+        <div class="form-group" ng-form name="RegisterForm">
         <h1>Register</h1>
             <input ng-model="username" type="text"
+                   ng-class="{'error-when' : submitted && RegisterForm.username.$error.required }"
+                   required
+                   name = "username"
                class="form-control"
                placeholder="username"/>
+            <span ng-show="submitted &&RegisterForm.username.$error.required"
+                  class="error"> User name is a required Field
+        </span>
         <input ng-model="password" type="password"
+               name="password"
+               required
+               ng-class="{ 'error-when' : submitted && model.perror , 'error-also' : submitted &&RegisterForm.vpassword.$error.required}"
                class="form-control"
                placeholder="Enter password"/>
-        <input ng-model="vpassword" type="password"
+            <span ng-show="submitted && RegisterForm.password.$error.required"
+                  class="error">
+            *Required Field
+        </span>
+        <input ng-model="vpassword"
+               ng-class="{ 'error-when' : submitted && model.perror , 'error-also' : submitted && RegisterForm.vpassword.$error.required}"
+               type="password"
+               required
+               name="vpassword"
                class="form-control"
-               placeholder="Verify password"/>
-        <a ng-click ="model.createUser(username,password,vpassword)"
+               placeholder="verify password"/>
+            <span ng-show="submitted && RegisterForm.vpassword.$error.required"
+                  class="error">
+            *Required Field
+        </span>
+            <span  ng-show="submitted && model.perror"
+                   class="error">
+            *{{model.perror}}
+        </span>
+        <a ng-click ="model.createUser(username,password,vpassword);submitted=true"
            class="btn btn-primary btn-block">Register</a>
                  <a class="btn btn-danger  btn-block"
                      href="#/login">Cancel</a>
         <div ng-show="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>
+            </div>
     </div>
 
 

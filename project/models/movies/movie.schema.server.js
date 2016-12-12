@@ -10,9 +10,9 @@ module.exports = function () {
                      tmdbId: String,
                      title: String,
                    poster_url: String,
-
+                released: Date,
         // ids of ratings for this movie
-                      ratings: [
+                                 ratings: [
             {
                 userId: String,
                 username: String,
@@ -20,7 +20,7 @@ module.exports = function () {
             }
         ],
 
-                   reviews: [
+                                 reviews: [
             {
                 userId: String,
                 username: String,

@@ -16,29 +16,52 @@
         vm.updateUser=updateUser;
         vm.logout = logout;
         vm.deleteUser = deleteUser;
-        // vm.id=$routeParams.uid;
-        function init() {
-            UserService
-            //.findUserById(vm.id)
-                .findCurrentUser()
-                .success(function(response){
-                    vm.user = response;
-                    vm.id = vm.user._id;
-                    console.log(vm.id);
-                    console.log("here in controller");
-                    console.log(vm.id);
 
-                })
+
+var userId = null;
+        function init(){
+
+                UserService
+                    .findCurrentUser()
+                    .success(function(response){
+                        vm.user = response;
+                        console.log(vm.user);
+                        vm.userId = vm.user._id;
+                        if(vm.user.reviews.length == 0){
+                            vm.noreviews= true;
+                        }
+                        if(vm.user.ratings.length == 0){
+                            vm.noratings= true;
+                        }
+                        if(vm.user.follows.length == 0){
+                            vm.nofollowers= true;
+                        }
+                        if(vm.user.role == "ADMIN"){
+                            vm.admin = true;
+                            console.log("Set as admin");
+                        }
+                    });
+
 
         }
         init();
 
-        function logout(){
-            UserService.logout()
-                .success(function(){
-                    $location.url("/login") ;
-                });
+
+
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
         }
+
 
         function updateUser(newUser) {
             console.log("check now",vm.id);

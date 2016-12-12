@@ -38,10 +38,9 @@
                             };
 
                             UserService
-                                .createUser(newUser)
-                                .then(function(response){
-                                    var success = response.data;
-
+                                .register(newUser)
+                                .then(function (response) {
+                                    var success=response.data;
                                     if(success){
                                         $location.url("/user/"+success._id)
                                     }
@@ -52,6 +51,7 @@
                         }
 
                         else{
+                            vm.perror = "password dont match!!";
                             vm.error="password dont match!!"}
                     }
 

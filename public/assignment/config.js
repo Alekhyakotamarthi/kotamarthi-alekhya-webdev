@@ -15,6 +15,13 @@
                 controllerAs:"model"
 
             })
+            .when ("/user", {
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {checkLogin: checkLogin }
+            })
+
             .when("/register", {
                 templateUrl: "views/user/register.view.client.html",
                 controller: "RegisterController",
