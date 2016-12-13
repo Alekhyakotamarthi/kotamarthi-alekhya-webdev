@@ -14,6 +14,6 @@ app.use(express.static(__dirname + '/public'));
 
 var assignment=require("./assignment/app");
 var project=require("./project/app");
-            //project(app);
-            assignment(app);
+            project(app);
+            //assignment(app);
 app.listen(3000);

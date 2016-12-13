@@ -18,8 +18,7 @@ details,
 figcaption,
 figure,
 footer,
-header,
-hgroup,
+header  ,
 main,
 menu,
 nav,
@@ -260,12 +259,7 @@ th {
         border: 1px solid #ddd !important;
     }
 }
-@font-face {
-    font-family: 'Glyphicons Halflings';
 
-    src: url('../fonts/glyphicons-halflings-regular.eot');
-    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
 .glyphicon {
     position: relative;
     top: 1px;
@@ -1187,7 +1181,7 @@ h6,
     font-family: inherit;
     font-weight: 500;
     line-height: 1.1;
-    color: inherit;
+    color: white;
 }
 h1 small,
 h2 small,
@@ -4636,6 +4630,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
+    color: white;
     border-color: #101010;
 }
 .navbar-inverse .navbar-nav > .open > a,
@@ -5004,8 +4999,8 @@ a.badge:focus {
     padding: 4px;
     margin-bottom: 20px;
     line-height: 1.42857143;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: lightblue;
+    border: 0px solid #ddd;
     border-radius: 4px;
     -webkit-transition: border .2s ease-in-out;
     -o-transition: border .2s ease-in-out;
@@ -6546,7 +6541,7 @@ button.close {
     position: fixed;
 }
 @-ms-viewport {
-    width: device-width;
+
 }
 .visible-xs,
 .visible-sm,

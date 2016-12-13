@@ -89,7 +89,14 @@
             })
                  .when("/user/:uid/home", {
 
-                templateUrl: "views/home/home.view.client.html",
+                templateUrl: "views/home/home1.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
+
+            .when("/home", {
+
+                templateUrl: "views/home/home1.view.client.html",
                 controller: "HomeController",
                 controllerAs: "model"
             })

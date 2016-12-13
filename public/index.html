@@ -1,30 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="Web Dev Fall 2016">
+    <meta name="author" content="Alekhya Kotamarthi">
+
+    <title>Alekhya Kotamarthi</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="CSS/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="CSS/magnetic-popup.css" type="text/css">
+    <link rel="stylesheet" href="CSS/creative.css" type="text/css">
+    <link rel="stylesheet" href="CSS/style.css" type="text/css">
+
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
 </head>
-<body>
-<h1>Web Dev Course Home Page</h1>
 
-<p>
-    Customize this home page to your linking.
-</p>
+<body id="page-top">
 
-<h2>Required links</h2>
-<ul>
-    <li>
-        <a href="project/index.html">Project</a>
-    </li>
-    <li>
-        <a href="assignment#/home">Assignment</a>
-    </li>
-    <li>
-        <a href="test/index.html">Test MongoDB</a>
-    </li>
-    <li>
-        <a href="https://github.com/Alekhyakotamarthi/kotamarthi-alekhya-webdev">Your public repository at GitHub.com</a>
-    </li>
-</ul>
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Alekhya Kotamarthi</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="#assignment">Assignment</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#project">Project</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#github">Code</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</nav>
+
+<header class="setbgimage">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1>ALEKHYA KOTAMARTHI</h1>
+            <hr>
+            <p>Computer Science Graduate at Northeastern University</p>
+            <a href="#assignment" class="btn btn-primary btn-xl page-scroll">Assignment</a>
+            <hr class="light">
+            <a href="#project" class="btn btn-primary btn-xl page-scroll">Project</a>
+            <hr class="light">
+            <a href="#code" class="btn btn-default btn-xl page-scroll">Code</a>
+        </div>
+    </div>
+</header>
+
+<section class="bg-primary" id="assignment">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Assignment</h2>
+                <hr class="light">
+                <p class="text-faded">WebAppMaker</p>
+                <a href="#overviewassignment" class="page-scroll btn btn-default btn-xl sr-button">View Details</a>
+                <a href="http://localhost:3000/assignment/index.html#/login" target="_blank" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="overviewassignment">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">WebAppMaker</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-code text-primary sr-icons"></i>
+                    <h3>Built using MEAN</h3>
+                    <p class="text-muted">Uses the best of MongoDB, Express, AngularJS and node.js.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-th text-primary sr-icons"></i>
+                    <h3>Modular design</h3>
+                    <p class="text-muted">Perform CRUD operations and remove content as you like!</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-facebook text-primary sr-icons"></i>
+                    <h3>Facebook Authentication</h3>
+                    <p class="text-muted">Uses Facebook authentication API to login</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-leanpub text-primary sr-icons"></i>
+                    <h3>Easy to learn</h3>
+                    <p class="text-muted">Developed using MVC to simplify learning</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-primary" id="project">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Project</h2>
+                <hr class="light">
+                <p class="text-faded">Movie Buff - an app for Searching current, upcoming movies and their reviews</p>
+                <a href="#projectoverview" class="page-scroll btn btn-default btn-xl sr-button">View Details</a>
+                <a href="http://localhost:3000/project/client/index.html#/home" target="_blank" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projectoverview">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Movie Buff</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-film text-primary sr-icons"></i>
+                    <h3>Search Movies online</h3>
+                    <p class="text-muted">View Upcoming movies!</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-bars text-primary sr-icons"></i>
+                    <h3>Ratings and reviews</h3>
+                    <p class="text-muted">View ratings and reviews given by other users</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-imdb text-primary sr-icons"></i>
+                    <h3>The MovieDB API</h3>
+                    <p class="text-muted">Built using the Movie DB's API for search results</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+                    <i class="fa fa-4x fa-google text-primary sr-icons"></i>
+                    <h3>Login with Google</h3>
+                    <p class="text-muted">Stay secure with Google's login authentication</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="code">
+    <aside id="github" class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Fork code from GitHub</h2>
+                <a href="https://github.com/Alekhyakotamarthi/kotamarthi-alekhya-webdev" target="_blank" class="btn btn-default btn-xl sr-button"><i class="fa fa-4x fa-github" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </aside>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">About me</h2>
+                <hr class="primary">
+                <div>
+                    <img src="images/myphoto.jpg" width="50%"  class="center-block img-responsive img-thumbnail img-rounded"/>
+                </div>
+                <hr class="primary">
+                <p>I am currently pursuing Masters in Computer Science</p>
+            </div>
+            <div class="col-lg-3 col-xs-3 text-center">
+                <i class="fa fa-phone fa-3x sr-contact"></i>
+                <p><a href="tel:224-209-6156">Mobile</a></p>
+            </div>
+            <div class="col-lg-3 col-xs-3 text-center">
+                <i class="fa fa-facebook fa-3x sr-contact"></i>
+                <p><a href="https://www.facebook.com/alekhya.kotamarthi">facebook</a></p>
+            </div>
+            <div class="col-lg-3 col-xs-3 text-center">
+                <i class="fa fa-linkedin fa-3x sr-contact"></i>
+                <p><a href="https://www.linkedin.com/in/alekhya-kotamarthi-bab03439?">Linkedin</a></p>
+            </div>
+            <div class="col-lg-3 col-xs-3 text-center">
+                <i class="fa fa-envelope fa-3x sr-contact"></i>
+                <p><a href="mailto: kotamarthi.a@husky.neu.edu">Gmail</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/scrollreveal.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery.fittext.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+
+
+<script src="js/creative.js"></script>
+
 </body>
+
 </html>

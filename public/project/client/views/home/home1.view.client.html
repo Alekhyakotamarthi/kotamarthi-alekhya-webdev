@@ -1,0 +1,113 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <div class = "setnavcolor">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/moviedefault">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pushdown setbgimage">
+    <div class="container-fluid">
+    <div class="wrapper">
+        <div id="carousel">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators txt-no-wrap">
+                        <li ng-repeat="movie in model.movies" data-target="#carousel-example-generic" data-slide-to= "{{$index}}" ng-class="{{!$index}} ? 'active' : 'none'"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item slider-size" ng-class="{{!$index}} ? 'active' : 'none'" ng-repeat="movie in model.movies">
+                            <img class="carousel-img" ng-src="http://image.tmdb.org/t/p/original{{movie.backdrop_path}}" alt="Awesome Image">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    <div class="container-fluid">
+        <div class="input-group">
+            <input ng-model = "model.movieName"
+                   type="text"
+                   placeholder="Spiderman"
+                   class="form-control ng-pristine ng-valid ng-touched">
+            <span class="input-group-btn ">
+                   <a href ="#/search/{{model.movieName}}"
+                      class="btn btn-info makegray"
+                      type="button">
+                       <span class="glyphicon glyphicon-search"></span>
+                   </a>
+                </span>
+        </div>
+    </div>
+
+    <div class=" col-sm-11   col-md-11   main">
+        <h3>Movies Playing Around you</h3>
+        <div class="row placeholders">
+            <div class="col-xs-12 col-sm-6 col-md-4 placeholder" ng-repeat="movie in model.movies" ng-if="movie.poster_path">
+                <div class="thumbnail">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <!--<iframe ng-src="{{movie.video_url}}"></iframe>-->
+                        <a ng-if="!movie.video_url"
+                           href="#/user/{{model.uid}}/movie/{{movie.id}}/{{movie.title}}">
+                            <img ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+                        </a>
+                    </div>
+                    <div class="caption">
+                        <a href="#/user/{{model.uid}}/movie/{{movie.id}}/{{movie.title}}">{{movie.title| limitTo:30}}</a>
+                    </div>
+                    <div class = "caption">
+                    <a> Release Date:</strong> {{movie.release_date}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a ng-if="model.loggedIn"
+               ng-click="model.logout()">
+                <span>Logout</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/login">
+                <span>Login</span>
+            </a>
+        </p>
+        <p class="navbar-text pull-left">
+            <a ng-if="model.loggedIn"
+               href="#/profile">
+                <span>Profile</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/register">
+                <span>Register</span>
+            </a>
+        </p>
+
+    </div>
+</nav>
