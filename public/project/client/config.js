@@ -100,6 +100,13 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
+
+            .when("/home/:title", {
+
+                templateUrl: "views/home/home1.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/movie/:mid/:title", {
 
                     templateUrl: "views/movie/moviedetails.view.client.html",

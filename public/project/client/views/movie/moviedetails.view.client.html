@@ -2,11 +2,11 @@
 <div class = "setbackground">
 <div class="container-fluid">
 
-    <div class="row">
-        <a href = "#/home/{{model.title}}">
+    <a href = "#/home/{{model.title}}">
 
-            <span class = "glyphicon glyphicon-chevron-left"></span>
-        </a>
+        <span class = "glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <div class="row">
         <h3 class="col-sm-offset-1 col-sm-11">{{model.movie.title}} ({{model.movie.release_date| date: 'yyyy'}})</h3>
     </div>
 
@@ -67,7 +67,21 @@
 
     <div class = "container-fluid">
 
+
+        <div ng-if="model.notloggedIn" class = "form-group">
+
+
+            <h4> Please login to let us know your reviews and see what others think!</h4>
+            <a class="btn btn-success btn-block"
+
+               href="#/login">Login</a>
+
+
+            </div>
+
     <div class="form-group">
+
+        <div  ng-if="model.loggedIn" class="col-xs-9">
         <p>
             <label for="reviewtext">Entered Rating  :</label>
             {{model.review.rating}}
@@ -78,7 +92,7 @@
                max=5
                step="0.1"/>
 
-    </div>
+
 
 
 
@@ -98,7 +112,9 @@
     <a class="btn btn-success btn-block"
 
        ng-click="model.checkRating(model.review.rating, model.review.reviewtext, model.movie)">Submit</a>
+        </div>
 </div>
+    </div>
 
 
 <div class = "container-fluid">
@@ -135,7 +151,7 @@
                             ng-if="actor.profile_path">
                             <a href="#/cast/{{actor.id}}">
                                 <img ng-src="https://image.tmdb.org/t/p/w92{{actor.profile_path}}"></a>
-                            <a class="title makeblack" href="#/cast/{{actor.id}}">{{actor.name}}</a>
+                            <a class="title makewhite" href="#/cast/{{actor.id}}">{{actor.name}}</a>
                             <!-- replace p with a to move to cast page -->
                         </li>
                     </ul>
@@ -146,13 +162,14 @@
          class="alert alert-danger">
         {{model.givecheckoutusererror}}
     </div>
-    <h3 class="page-header">User Reviews</h3>
 
-    <div   ng-repeat = "rev in model.movieReviews.reviews" >
+
+    <div ng-if="model.loggedIn">
+        <h3 class="page-header">User Reviews</h3>
+    <div  ng-repeat = "rev in model.movieReviews.reviews" >
 
             <div class="row">
 
-                <!-- Username -->
 
 
                         <h3 class="glyphicon glyphicon-user makewhite">
@@ -175,6 +192,7 @@
 
 
 
+    </div>
     </div>
     </div>
 

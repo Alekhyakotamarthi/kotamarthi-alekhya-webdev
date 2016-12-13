@@ -17,6 +17,24 @@
         vm.checkRating = checkRating;
         function init() {
 
+            UserService
+            //.findUserById(vm.id)
+                .findCurrentUser()
+                .success(function (response) {
+                    console.log("response is here");
+                    console.log(response)
+                    vm.user1 = response;
+                    if (vm.user1) {
+
+                        vm.loggedIn = "true";
+                        vm.loggedInUser = vm.user1._id;
+                        console.log(vm.loggedInUser);
+
+                    } else {
+                        vm.notloggedIn = "true";
+
+                    }
+                });
 
                 console.log(imdbID)
                 getMovieInfo(imdbID);
