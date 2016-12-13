@@ -60,6 +60,10 @@
 
 
         function checkRating(rating,review,movie){
+            console.log("view ratings here");
+            console.log(rating);
+            console.log(review);
+            console.log(movie);
             UserService
                 .findUserById(vm.uid)
                 .then(function (response) {

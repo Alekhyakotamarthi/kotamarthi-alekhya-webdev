@@ -2,19 +2,29 @@
 <div class = "setbackground">
 <div class="container-fluid">
 
-    <a href = "#/home/{{model.title}}">
+    <div class="row">
+        <a href = "#/home/{{model.title}}">
 
-        <span class = "glyphicon glyphicon-chevron-left"></span>
-    </a>
-            <!--Movie Name -->
-            <h3 ><b>{{model.movie.title}} ({{model.movie.release_date  | date: 'yyyy'}})</b></h3>
+            <span class = "glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <h3 class="col-sm-offset-1 col-sm-11">{{model.movie.title}} ({{model.movie.release_date| date: 'yyyy'}})</h3>
+    </div>
 
-            <!-- Movie Genre and Release Date-->
+    <!-- Movie Summary-->
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="page-header">Summary</h3>
+            <p class="justifytext">{{model.movie.overview}}</p>
+        </div>
+    </div>
+
+
             <div class="row">
                 <div class="col-xs-6">
                     <h4  class="page-header"><b>Genre</b></h4>
                     <div ng-repeat="genre in model.movie.genres | limitTo:2">
                         {{genre.name}}
+                    </div>
                     </div>
 
 
@@ -28,10 +38,6 @@
                 </div>
             </div>
 
-
-
-            <!-- IMDB Rating and Film Nerd Rating -->
-            <p></p>
             <div class="row">
                 <div class="col-xs-6">
                     <h4  class="page-header"><b>IMDB critics Rating</b></h4>
@@ -45,7 +51,7 @@
                 </div>
 
                 <div class="col-xs-6">
-                    <h4  class="page-header"><b>FilmNerd Rating</b></h4>
+                    <h4  class="page-header"><b>Movie Buff Rating</b></h4>
                     <div ng-model="model.movie.usersRating"
                          class="meter">
 
@@ -56,24 +62,46 @@
 
                 </div>
 
-                <div>
-
-
-                    <input ng-model ="newrating"
-                           type="number"
-                           class="form-control"
-                           placeholder="Enter Rating"/>
-                    <input ng-model ="newreview"
-                           type="string"
-                           class="form-control"
-                           placeholder="Enter Review"/>
-                    <a ng-click = "model.checkRating(newrating,newreview,model.movie)"
-                       class="btn btn-primary btn-block">Rate The Movie!</a>
-
                 </div>
-            </div>
-                </div>
-            <p></p>
+    </div>
+
+    <div class = "container-fluid">
+
+    <div class="form-group">
+        <p>
+            <label for="reviewtext">Entered Rating  :</label>
+            {{model.review.rating}}
+        </p>
+        <input ng-model="model.review.rating"
+               type="range"
+               min=0
+               max=5
+               step="0.1"/>
+
+    </div>
+
+
+
+    <div class="form-group">
+        <p><label for="reviewtext">Review:</label></p>
+        <textarea ng-model="model.review.reviewtext"
+                  type="text"
+                  class="form-control"
+                  id="reviewtext"
+                  name="title"
+                  rows = 5
+                  placeholder="enter the review"
+                  required></textarea>
+
+        <p></p></div>
+
+    <a class="btn btn-success btn-block"
+
+       ng-click="model.checkRating(model.review.rating, model.review.reviewtext, model.movie)">Submit</a>
+</div>
+
+
+<div class = "container-fluid">
             <div class="row">
                 <div class="col-sm-3">
                     <!-- Movie Poster-->
@@ -95,13 +123,7 @@
                 </div>
             </div>
 
-            <!-- Movie Summary-->
-            <div class="row">
-                <div class="col-xs-12">
-                    <h3 class="page-header">Summary</h3>
-                    <p class="justifytext">{{model.movie.overview}}</p>
-                </div>
-            </div>
+
 
             <!-- Cast of the Movie -->
             <div class="row">
@@ -129,22 +151,17 @@
     <div   ng-repeat = "rev in model.movieReviews.reviews" >
 
             <div class="row">
-                <div>
+
                 <!-- Username -->
 
-                    <a href="#/user/profile/{{rev.username}}">
-                        <h3 class="glyphicon glyphicon-user makeblack"> {{rev.username}}
+
+                        <h3 class="glyphicon glyphicon-user makewhite">
+                            <a href="#/user/profile/{{rev.username}}">{{rev.username}}:
+                            </a>
                         </h3>
-                    </a>
 
 
-                <!-- Report Button-->
-                <a  type="button " ng-click="model.reportReview(rev._id)"
-                    class=" reportbutton btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-exclamation-sign  "></span> Report
-                </a>
 
-                </div>
 
             </div>
 
@@ -158,6 +175,7 @@
 
 
 
+    </div>
     </div>
 
 </div>

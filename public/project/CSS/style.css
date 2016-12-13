@@ -270,6 +270,7 @@ li.w92 img {
 .justifytext{
     text-align: justify;
     text-justify: inter-word;
+    color: white;
 }
 
 .setbgimage{
