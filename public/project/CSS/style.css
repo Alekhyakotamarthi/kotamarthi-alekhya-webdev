@@ -19,7 +19,19 @@ a.makegray{
 }
 
 
+.btn1{
+    left: 10px;
+    width: 30%;
+    right: 100px;
+    height: 50%;
+}
 
+
+
+
+.customclass{
+    padding-bottom: 10px;
+}
 a.makeblue{background-color: cadetblue;}
 /*body{*/
 /*padding-top: 30px;*/
@@ -42,9 +54,19 @@ div.lesspaddingbotton{
 .makewhite{
     color: whitesmoke;
 }
+
+        .dashboardadmin{
+    padding-bottom: 150px;
+}
 .makeblack{
     color: #1b6d85;
 }
+a.makeblue{background-color: cadetblue;}
+
+.makeblue{
+    background-color: yellow;
+}
+
 
 .pupular-div
 {
@@ -277,6 +299,9 @@ li.w92 img {
     background-image: url(../client/images/spiderman.jpg);
 }
 
-.setbackground{
+.setbackground {
     background-image: url(../client/images/movieinfo.jpg);
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: transparent;
 }

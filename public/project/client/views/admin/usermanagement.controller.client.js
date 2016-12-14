@@ -28,7 +28,7 @@
             var user = {
                 username: username,
                 password: password,
-                admin: admin
+                role: admin
             };
 
             UserService
@@ -51,7 +51,7 @@
 
         function deleteUser(userId) {
             UserService
-                .deleteUser(userId)
+                .deleteUser2(userId)
                 .then(
                     function (response) {
                         vm.warning = "Deleted Successfully!";
@@ -72,7 +72,7 @@
 
 
             UserService
-                .updateUser(userId, user)
+                .updateUser2(userId, user)
                 .then(
                     function (response) {
                         vm.updatedmessage = "Updated Successfully!";

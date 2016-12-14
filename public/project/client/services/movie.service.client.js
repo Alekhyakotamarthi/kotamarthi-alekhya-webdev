@@ -14,6 +14,7 @@
             "searchMovieByTitle":searchMovieByTitle,
             "searchMovieByID":searchMovieByID,
             "findNowPlaying": findNowPlaying,
+            "findPopularMovies":findPopularMovies,
         };
         return api;
 
@@ -34,6 +35,11 @@
                 var url = "http://api.themoviedb.org/3/movie/now_playing?api_key=" + api_key;
                 return $http.get(url);
 
+        }
+
+        function findPopularMovies(){
+            var uri = "http://api.themoviedb.org/3/movie/popular?api_key="+api_key;
+            return $http.get(uri);
         }
 
 

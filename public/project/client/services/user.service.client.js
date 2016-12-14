@@ -13,10 +13,12 @@
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             updateUser: updateUser,
+            updateUser2: updateUser2,
             findUserByUsername: findUserByUsername,
             createUser: createUser,
             SearchAllUsers:SearchAllUsers,
             deleteUser: deleteUser,
+            deleteUser2: deleteUser2,
             login: login,
             checkLogin: checkLogin,
             logout: logout,
@@ -89,13 +91,26 @@
 
         function deleteUser(uid){
             console.log("at client server"+uid);
-            var url = "/api/project/user/"+uid;
+            var url = "/api/project/"+uid;
+            return $http.delete(url);
+        }
+
+        function deleteUser2(uid){
+            console.log("at client server"+uid);
+            var url = "/api/project/admin/"+uid;
             return $http.delete(url);
         }
 
         function updateUser(userId, user) {
 
-            var url ="/api/project/user/"+userId;
+            var url ="/api/project/"+userId;
+            return $http.put(url,user);
+
+        }
+
+        function updateUser2(userId, user) {
+
+            var url ="/api/project/admin/"+userId;
             return $http.put(url,user);
 
         }

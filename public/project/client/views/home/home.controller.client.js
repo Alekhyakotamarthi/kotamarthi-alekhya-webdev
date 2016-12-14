@@ -7,7 +7,7 @@
         .module("MovieApp")
         .controller("HomeController", HomeController);
 
-    function HomeController(MovieService,$routeParams,$location) {
+    function HomeController(MovieService,UserService,$routeParams,$location) {
         console.log("in controller");
         var vm =this;
         vm.uid = $routeParams.uid;
@@ -15,14 +15,39 @@
 
         vm.title = $routeParams.title;
         function init(){
+
+            UserService
+            //.findUserById(vm.id)
+                .findCurrentUser()
+                .success(function (response) {
+                    console.log("response is here");
+                    console.log(response)
+                    vm.user1 = response;
+                    if (vm.user1) {
+
+                        vm.loggedIn = "true";
+                        vm.loggedInUser = vm.user1._id;
+                        console.log(vm.loggedInUser);
+
+                    } else {
+                        console.log("in else");
+                        vm.notloggedIn = "true";
+
+                    }
+                });
            if(vm.title){
                $location.path("/home/"+vm.title);
                searchMovieByTitle(vm.title);
            }
            MovieService.findNowPlaying()
                .success(function(result){
-                   vm.movies = result.results;
+                   vm.nowplayingmovies = result.results;
                })
+
+            MovieService.findPopularMovies()
+                .success(function(result){
+                    vm.movies = result.results;
+                })
         }
         init();
 

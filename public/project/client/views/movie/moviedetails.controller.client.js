@@ -10,7 +10,6 @@
         console.log("in controller");
                  var vm =this;
         var imdbID = $routeParams.mid;
-        vm.uid = $routeParams.uid;
         vm.title = $routeParams.title;
                     vm.RateMovie = RateMovie;
 
@@ -28,6 +27,7 @@
 
                         vm.loggedIn = "true";
                         vm.loggedInUser = vm.user1._id;
+                        vm.uid = vm.user1._id;
                         console.log(vm.loggedInUser);
 
                     } else {
@@ -36,7 +36,6 @@
                     }
                 });
 
-                console.log(imdbID)
                 getMovieInfo(imdbID);
                 getReviewsandRatings(imdbID);
                 getUnamefromId(vm.uid);
@@ -60,19 +59,6 @@
                 });
 
 
-
-        }
-
-        function LoggedinUser(){
-
-            if($rootScope.currentUser){
-                vm.loggedIn = "true";
-                loggedInUserId = $rootScope.currentUser._id;
-
-            } else {
-                vm.notloggedIn = "true";
-
-            }
 
         }
 
@@ -180,7 +166,9 @@
                                       console.log(" in update movie");
                                       console.log(response);
 
-                                      $location.url("/user/" + vm.uid + "/movie/" + vm.movie.id + "/" + vm.movie.title);
+                                      vm.success = "Successfully added the review"
+
+                                     // $location.url( "/movie/" + vm.movie.id + "/" + vm.movie.title);
                                   } else {
                                       vm.error = "unable to add review";
                                   }
@@ -197,8 +185,9 @@
                                       // console.log("newmovie");
                                       //console.log(newmovie);
                                       //console.log(newmovie._id);
+                                      vm.success = "Successfully added the review"
 
-                                      $location.url("/user/" + vm.uid + "/movie/" + vm.movie.id + "/" + vm.movie.title);
+                                     // $location.url("/movie/" + vm.movie.id + "/" + vm.movie.title);
 
                                   }
                                   else {
@@ -225,8 +214,8 @@
                       }
                       response.credits.cast.splice(8, response.credits.cast.length - 8);
                       vm.movie = response;
-                      //console.log("here is the id to look for");
-                      //console.log(response.id);
+                      console.log("here is the id to look for");
+                      console.log(vm.movie);
                       vm.movie.tmdbId = response.id;
                       vm.movie.criticsRating = response.vote_average / 2;
                       vm.movie.ratings = [];

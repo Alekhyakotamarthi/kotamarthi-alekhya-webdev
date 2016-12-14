@@ -1,14 +1,37 @@
-<div class="container">
-    <h4><b>Active Users:</b> {{model.userCount}}</h4>
-</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <div class = "setnavcolor">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right makewhite">
+                        <li><a href="#/home">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+</nav>
+
+<div class = "setbackground">
 
 <!-- Create User -->
-<div class="container ">
+<div class="container-fluid pushdown">
+
 
     <div ng-if="model.createsuccess" class="alert alert-success">
         {{model.createsuccess}}
     </div>
+
 
     <h4><b>Create User (Admin/User)</b></h4>
 
@@ -31,15 +54,15 @@
             <select type="string"
                     class="form-control"
                     placeholder="Admin/User"
-                    ng-model="model.admin">
+                    ng-model="model.role">
 
-                <option value="true">Admin</option>
-                <option value="false">User</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="ENDUSER">ENDUSER</option>
             </select>
         </div>
 
         <div class="col-md-3 col-sm-12 col-xs-12 paddedfromtop3">
-            <a ng-click="model.createUser(model.username, model.password, model.admin)"
+            <a ng-click="model.createUser(model.username, model.password, model.role)"
                class="btn btn-block btn-primary">
                 Create
             </a>
@@ -61,33 +84,25 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table">
             <th>Update User</th>
 
 
             <th>Username</th>
-            <th>Admin (true/false)</th>
-
-
+            <th>Role(ADMIN/ENDUSER)</th>
 
             <tr ng-repeat="user in model.users">
-                <td><a class="glyphicon glyphicon-ok makeblack"
+                <td><a class="glyphicon glyphicon-ok makewhite"
                        ng-click="model.updateUser(user._id, user)"></a>
 
-                    <!-- User Name -->
                 <td>
-                    <a class="makeblack"
+                    <a class="makewhite"
                        href="#/user/profile/{{user.username}}">{{user.username}}</a>
                 </td>
 
-                <!-- Admin -->
-
                 <td><input type="text"
                            ng-model="user.admin"
-                           placeholder="true/false"/></td>
-
-
-
+                           placeholder="ADMIN/ENDUSER"/></td>
 
             </tr>
         </table>
@@ -107,7 +122,7 @@
         {{model.updatedmessage}}
     </div>
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table ">
             <th>Update User</th>
             <th>Delete User</th>
 
@@ -119,30 +134,28 @@
 
 
             <tr ng-repeat="user in model.users">
-                <td><a class="glyphicon glyphicon-ok makeblack"
+                <td><a class="glyphicon glyphicon-ok makewhite"
                        ng-click="model.updateUser(user._id, user)"></a>
                 </td>
-                <td><a class="glyphicon glyphicon-remove makeblack"
+                <td><a class="glyphicon glyphicon-remove makewhite"
                        ng-click="model.deleteUser(user._id)"></a>
                 </td>
-                <!-- User Name -->
+
                 <td>
-                    <a class="makeblack"
+                    <a class="makewhite"
                        href="#/user/profile/{{user.username}}">{{user.username}}</a>
                 </td>
 
 
-                <!-- First Name -->
                 <td><input type="text"
                            ng-model="user.firstName"
                            placeholder="First Name"/></td>
 
-                <!-- Last Name -->
+
                 <td><input type="text"
                            ng-model="user.lastName"
                            placeholder="Last Name"/></td>
 
-                <!-- Email -->
                 <td><input type="text"
                            ng-model="user.email"
                            placeholder="Email"/></td>
@@ -174,38 +187,33 @@
             </tr>
             </thead>
 
-            <!-- Table Body-->
             <tbody ng-repeat="user in model.users">
 
             <tr>
-                <!--Username-->
+
                 <td>
-                    <span class="glyphicon glyphicon-user ">
-                        <a class="makeblack"
+                    <span class="glyphicon glyphicon-user makewhite">
+                        <a class="makewhite"
                            href="#/user/profile/{{user.username}}">
                          {{user.username}}</a></span>
                 </td>
 
                 <td>
-                    <!--{{user.admin}}-->
 
-                    <a ng-if="user.admin=='true'"class="makeblack">
+
+                    <a ng-if="user.role=='ADMIN'"class="makewhite">
                         Admin
                     </a>
 
-                    <a ng-if="user.admin=='false'"class="makeblack">
+                    <a ng-if="user.role=='ENDUSER'"class="makewhite">
                         User
                     </a>
                 </td>
 
-                <!--First Name -->
                 <td> {{user.firstName}}</td>
 
-
-                <!--Last Name -->
                 <td> {{user.lastName}}</td>
 
-                <!-- Email Name -->
                 <td> {{user.email}}</td>
 
 
@@ -215,4 +223,32 @@
         </table>
     </div>
 </div>
+</div>
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a ng-if="model.loggedIn"
+               ng-click="model.logout()">
+                <span>Logout</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/login">
+                <span>Login</span>
+            </a>
+        </p>
+        <p class="navbar-text pull-left">
+            <a ng-if="model.loggedIn"
+               href="#/user">
+                <span>Profile</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/register">
+                <span>Register</span>
+            </a>
+        </p>
+
+    </div>
+</nav>
 </div>

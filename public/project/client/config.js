@@ -49,6 +49,7 @@
                     controller: "AdminDashboardController",
                     controllerAs: "model",
                     resolve: {
+                        checkLogin:checkLogin,
                         checkAdmin:checkAdmin
                     }
                 }
@@ -59,6 +60,7 @@
                     controller: "UserManagementController",
                     controllerAs: "model",
                     resolve: {
+                        checkLogin:checkLogin,
                         checkAdmin:checkAdmin
                     }
                 }
@@ -87,7 +89,21 @@
                 }
 
             })
-                 .when("/user/:uid/home", {
+
+            .when("/user/home/:mid/:title", {
+
+                templateUrl: "views/movie/moviedetails.view.client.html",
+                controller: "MovieDetailsController",
+                controllerAs: "model"
+            })
+                 .when("/home/:title", {
+
+                templateUrl: "views/home/home1.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
+
+            .when("/user/:uid/home", {
 
                 templateUrl: "views/home/home1.view.client.html",
                 controller: "HomeController",
@@ -101,19 +117,26 @@
                 controllerAs: "model"
             })
 
-            .when("/home/:title", {
+            .when("/managemovies",{
 
-                templateUrl: "views/home/home1.view.client.html",
-                controller: "HomeController",
-                controllerAs: "model"
+                templateUrl: "views/admin/moviemanagement.view.client.html",
+                controller: "MovieManagementController",
+                controllerAs: "model",
+
+                resolve: {
+                    checkLogin:checkLogin,
+                    checkAdmin:checkAdmin
+                }
             })
+
+
             .when("/user/:uid/movie/:mid/:title", {
 
                     templateUrl: "views/movie/moviedetails.view.client.html",
                     controller: "MovieDetailsController",
                     controllerAs: "model"
                 })
-            .when("user/:uid/home/:title", {
+            .when("/user/:uid/home/:title", {
 
                 templateUrl: "views/home/home.view.client.html",
                 controller: "HomeController",

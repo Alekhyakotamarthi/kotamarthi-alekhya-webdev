@@ -40,7 +40,9 @@ module.exports = function(app,model){
                         app.get("/api/project/user/:userId",findUserById);
                 app.post("/api/project/user",createUser);
              app.put("/api/project/:userId",loggedInAndSelf,updateUser);
+    app.put("/api/project/admin/:userId",updateUser2);
              app.delete("/api/project/:userId",loggedInAndSelf,deleteUser);
+    app.delete("/api/project/admin/:userId",deleteUser);
             app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
                  app.post("/api/project/login",passport.authenticate('local') ,login);
                      app.post("/api/project/checkLogin",checkLogin);
@@ -79,7 +81,8 @@ module.exports = function(app,model){
         var loggedin = req.isAuthenticated();
         var userId = req.params.userId;
         var self = userId == req.user._id;
-        console.log(self);
+        console.log(loggedin);
+        console.log(req.user._id);
         console.log("User is");
         console.log(userId);
         if(self&&loggedin){
@@ -317,6 +320,8 @@ module.exports = function(app,model){
                     res.statusCode(404).send(error);
                 }
             )
+
+
         // for (var value in users) {
         //    var obj = users[value];
         //   var id = obj._id;
@@ -327,6 +332,25 @@ module.exports = function(app,model){
         //  }
         // }
         // res.send(null);
+    }
+
+    function updateUser2(req,res) {
+        var updated_user = req.body;
+        var userid = req.params.userId;
+
+        console.log("here in server");
+        console.log(userid);
+        userModel
+            .updateUser(userid, updated_user)
+            .then(
+                function (user) {
+                    console.log(user);
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.statusCode(404).send(error);
+                }
+            )
     }
 
     function followUser(req, res) {
@@ -363,6 +387,30 @@ module.exports = function(app,model){
             );
     }
     function deleteUser(req,res){
+        var id=req.params.userId;
+        userModel
+            .deleteUser(id)
+            .then(
+                function(stats){
+
+                    res.sendStatus(200);
+                },
+                function(error){
+                    res.statusCode(400).send(error);
+                }
+            )
+
+        //for(var i in users){
+        //   if(users[i]._id == id){
+        //      users.splice(i,1);
+        //     res.send(200);
+        //     return;
+        //  }
+        //}
+        // res.send(400);
+    }
+
+    function deleteUser2(req,res){
         var id=req.params.userId;
         userModel
             .deleteUser(id)

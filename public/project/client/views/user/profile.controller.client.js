@@ -42,11 +42,30 @@ var userId = null;
                         }
                     });
 
+            getLoggedInUser();
 
         }
         init();
 
 
+        function getLoggedInUser() {
+            UserService
+                .findCurrentUser()
+                .success(function (response) {
+                    vm.user = response;
+                    console.log(vm.user);
+                    vm.userId = vm.user._id;
+                    if (vm.user) {
+                        vm.loggedIn = "true";
+                        loggedInUserId = vm.userId;
+
+                    } else {
+                        vm.notloggedIn = "true";
+
+                    }
+
+                })
+        }
 
 
         function logout() {
@@ -64,11 +83,11 @@ var userId = null;
 
 
         function updateUser(newUser) {
-            console.log("check now",vm.id);
-            UserService.updateUser(vm.id,newUser)
+            console.log("check now",vm.userId);
+            UserService.updateUser(vm.userId,newUser)
 
                 .success(function(user){
-                    console.log(vm.user);
+                    console.log(user);
                     $location.url("/user/"+vm.user._id);
 
                 });

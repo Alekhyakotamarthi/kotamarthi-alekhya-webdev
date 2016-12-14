@@ -1,26 +1,33 @@
-
-
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Search Box -->
-        <div class="input-group">
-            <input ng-model = "model.movieName"
-                   type="text"
-                   placeholder="enter movie name.. Eg: Inception"
-                   class="form-control ng-pristine ng-valid ng-touched">
-            <span class="input-group-btn ">
-                   <a href ="#/search/{{model.movieName}}"
-                      class="btn btn-info makegray"
-                      type="button">
-                       <span class="glyphicon glyphicon-search"></span>
-                   </a>
-                </span>
-        </div>
+        <div class="navbar-header">
+            <div class = "setnavcolor">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#/home">Home</a></li>
+                    </ul>
+
+                </div>
+            </div>
+</nav>
+
+    <div class="container-fluid pushdown setbackground">
 
         <div class="row">
             <div class="col-xs-8">
 
                 <h2 class="page-header">{{model.user.firstName}}'s Profile </h2>
-
 
                 <a ng-if="model.notfollowing"
                    ng-click="model.followUser()"
@@ -28,15 +35,11 @@
                     <span class="glyphicon glyphicon glyphicon-heart"></span>
                     Follow</a>
 
-
-
                 <a ng-if="model.following"
                    ng-click="model.unfollowUser()"
                    class="btn btn-primary btn-sm" type="submit">
                     <span class="fa fa-heartbeat"></span>
                     UnFollow {{model.user.firstName}} </a>
-
-
                 <p></p>
                 <div ng-if="model.error"
                      class="alert alert-danger">
@@ -48,10 +51,10 @@
                     {{model.success}}
                 </div>
 
-
-
-
-
+                <div ng-if="model.unfollow"
+                     class="alert alert-danger">
+                    {{model.unfollow}}
+                </div>
 
                 </a>
             </div>
@@ -60,17 +63,13 @@
         <!-- Users Reviews -->
         <div class="container-fluid">
             <h3>{{model.user.firstName}}'s Reviews</h3>
-
             <div ng-repeat="reviews in model.user.reviews" class="row">
-
-                <a class="makeblack" href="#/movie/{{reviews.tmdbId}}">
+                <a class="makewhite" href="#/user/home/{{reviews.tmdbId}}/{{reviews.movieName}}">
                     <div class="col-xs-4">
-                        <img ng-src="{{reviews.poster_url}}" width = 70>
+                        <img ng-src="{{reviews.poster_url}}" width = 100px height= 100px>
                         <h5>{{reviews.name}}</h5>
-
                     </div>
                 </a>
-
                 <div class="col-xs-8">
                     <h4>{{reviews.review}}</h4>
                 </div>
@@ -78,31 +77,28 @@
             </div>
         </div>
 
-
-        <!-- Users Ratings -->
         <div class="container-fluid">
             <h3>{{model.user.firstName}}'s Ratings</h3>
-
             <div ng-repeat="ratings in model.user.ratings" class="row">
-                <a class="makeblack" href="#/movie/{{ratings.tmdbId}}">
-                    <div class="col-xs-5">
-                        <img ng-src="{{ratings.poster_url}}" width = 70>
+                <a class="makewhite" href="#/user/home/{{ratings.tmdbId}}/{{ratings.movieName}}">
+                    <div class="col-xs-4">
+                        <img ng-src="{{ratings.poster_url}}" width = 100px height= 100px>
+                        </div>
+                </a>
+
+                        <div class="col-xs-8">
 
                         <h5>{{model.user.firstName}} rated: {{ratings.rating}}/5</h5>
                     </div>
-                </a>
+
                 <p></p>
 
             </div>
 
-        </div>
-
-
-        <div class="container ">
             <h3>{{model.user.firstName}} Follows</h3>
             <div ng-repeat ="follow in model.user.follows">
                 <li>
-                    <a class="makeblack" href ="#/user/profile/{{follow.username}}">
+                    <a class="makewhite" href ="#/user/profile/{{follow.username}}">
                         {{follow.username}}
                     </a>
                 </li>
@@ -111,5 +107,32 @@
         </div>
 
     </div>
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container-fluid">
+            <p class="navbar-text pull-right">
+                <a ng-if="model.loggedIn"
+                   ng-click="model.logout()">
+                    <span>Logout</span>
+                </a>
+                <a ng-if="model.notloggedIn"
+                   href="#/login">
+                    <span>Login</span>
+                </a>
+            </p>
+            <p class="navbar-text pull-left">
+                <a ng-if="model.loggedIn"
+                   href="#/user">
+                    <span>Profile</span>
+                </a>
+                <a ng-if="model.notloggedIn"
+                   href="#/register">
+                    <span>Register</span>
+                </a>
+            </p>
+
+        </div>
+    </nav>
 
 

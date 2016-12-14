@@ -1,31 +1,34 @@
-
-
-<
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Search Box -->
-        <div class="input-group">
-            <input ng-model = "model.movieName"
-                   type="text"
-                   placeholder="enter movie name.. Eg: Inception"
-                   class="form-control ng-pristine ng-valid ng-touched">
-            <span class="input-group-btn ">
-                   <a href ="#/search/{{model.movieName}}"
-                      class="btn btn-info makegray"
-                      type="button">
-                       <span class="glyphicon glyphicon-search"></span>
-                   </a>
-                </span>
-        </div>
+        <div class="navbar-header">
+            <div class = "setnavcolor">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-        <div class="container container-fluid pushdown">
-            <div class="container">
-                <a class="btn btn-success btn-block makeblue"
-                   href="#/manageflaggedreviews">Manage Flagged Reviews
-                </a>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right makewhite">
+                        <li><a href="#/home">Home</a></li>
+                    </ul>
+                </div>
             </div>
-            <p></p>
+        </div>
+    </div>
+</nav>
+
+        <div class="container-fluid pushdown dashboardadmin">
+
+            <div class="container container-fluid pushdown">
+
             <div class="container">
-                <a class="btn btn-success btn-block makeblue"
+                <a class="btn btn-success btn-block makeyellow"
                    href="#/admin/usermanagement">Go To User Management Dashboard
                 </a>
             </div>
@@ -33,11 +36,41 @@
 
             <p></p>
             <div class="container">
-                <a class="btn btn-success btn-block makeblue"
+                <a class="btn btn-success btn-block makeyellow"
                    href="#/managemovies">Manage Ratings and Reviews
                 </a>
             </div>
         </div>
+            </div>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a ng-if="model.loggedIn"
+               ng-click="model.logout()">
+                <span>Logout</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/login">
+                <span>Login</span>
+            </a>
+        </p>
+        <p class="navbar-text pull-left">
+            <a ng-if="model.loggedIn"
+               href="#/user">
+                <span>Profile</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/register">
+                <span>Register</span>
+            </a>
+        </p>
+
+    </div>
+</nav>
+
+
 
 
 

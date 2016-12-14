@@ -1,0 +1,111 @@
+<n<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class = "setnavcolor">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right makewhite">
+                        <li><a href="#/home">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+</nav>
+
+<!--Body-->
+
+<div class="customclass container-fluid pushdown setbackground">
+
+    <!-- Number of Movies Reviewed-->
+    <div class="container">
+        <h4><b>Total Reviews:</b> {{model.moviesCount}}</h4>
+    </div>
+
+    <div class="container ">
+        <h4 ><b>Manage Movie Reviews</b></h4>
+        <div ng-if="model.warning" class="alert alert-warning">
+            {{model.warning}}
+        </div>
+        <div ng-if="model.updatedmessage" class="alert alert-success">
+            {{model.updatedmessage}}
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <th>Update Review</th>
+                <th>Delete Review</th>
+
+                <th>Movie</th>
+                <th>Reviewed by</th>
+                <th>Review</th>
+
+
+                <tr ng-repeat="movie in model.results">
+
+                    <td><a class="glyphicon glyphicon-ok makewhite"
+                           ng-click="model.updateMovie(movie.tmdbId, movie.userId, movie.text)"></a>
+                    </td>
+                    <td><a class="glyphicon glyphicon-remove makewhite"
+                           ng-click="model.deleteMovie(movie.tmdbId, movie.userId)"></a>
+                    </td>
+
+                    <!-- Movie-->
+                    <td>
+                        <a class="makewhite"
+                           href="#/movie/{{movie.tmdbId}}">{{movie.title}}</a>
+                    </td>
+                    <td>
+                        <a class="makewhite"
+                           href="#/user/profile/{{movie.username}}">{{movie.username}}</a>
+                    </td>
+                    <!-- Review-->
+                    <td><textarea type="text"
+                                  ng-model="movie.text"
+                                  rows = "4"
+                                  placeholder="Review Text">{{movie.text}}
+                    </textarea></td>
+
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    </div>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a ng-if="model.loggedIn"
+               ng-click="model.logout()">
+                <span>Logout</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/login">
+                <span>Login</span>
+            </a>
+        </p>
+        <p class="navbar-text pull-left">
+            <a ng-if="model.loggedIn"
+               href="#/user">
+                <span>Profile</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/register">
+                <span>Register</span>
+            </a>
+        </p>
+
+    </div>
+</nav>
+</div>

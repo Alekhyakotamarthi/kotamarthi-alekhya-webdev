@@ -1181,7 +1181,7 @@ h6,
     font-family: inherit;
     font-weight: 500;
     line-height: 1.1;
-    color: inherit;
+    color: black;
 }
 h1 small,
 h2 small,
@@ -1240,6 +1240,7 @@ h5,
 .h5,
 h6,
 .h6 {
+    color: black;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -6751,3 +6752,4 @@ button.close {
         display: none !important;
     }
 }
+
