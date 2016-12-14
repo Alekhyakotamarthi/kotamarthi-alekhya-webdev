@@ -226,29 +226,23 @@
 </div>
 </div>
 
-<nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container-fluid">
-        <p class="navbar-text pull-right">
-            <a ng-if="model.loggedIn"
-               ng-click="model.logout()">
-                <span>Logout</span>
-            </a>
-            <a ng-if="model.notloggedIn"
-               href="#/login">
-                <span>Login</span>
-            </a>
-        </p>
-        <p class="navbar-text pull-left">
-            <a ng-if="model.loggedIn"
-               href="#/user">
-                <span>Profile</span>
-            </a>
-            <a ng-if="model.notloggedIn"
-               href="#/register">
-                <span>Register</span>
-            </a>
-        </p>
 
-    </div>
-</nav>
+        <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <p class="navbar-text pull-right">
+                    <a
+                            ng-click="model.logout()">
+                        <span>Logout</span>
+                    </a>
+
+                </p>
+                <p class="navbar-text pull-left">
+                    <a
+                            href="#/admin">
+                        <span>Admin Dashboard</span>
+                    </a>
+                </p>
+
+            </div>
+        </nav>
 </div>
