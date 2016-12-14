@@ -308,6 +308,7 @@ li.w92 img {
 
 .setlogin{
     background-image:url(../client/images/movieinfo.jpg);
+    padding-bottom: 20px;
     width: 100%;
     height: 100%;
 }

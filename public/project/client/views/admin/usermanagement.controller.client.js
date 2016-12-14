@@ -15,6 +15,7 @@
         vm.createUser = createUser;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
 
         function init() {
             getLoggedInUser();
@@ -35,7 +36,7 @@
                 .createUser(user)
                 .then(
                     function (response) {
-                        vm.createsuccess = "Created EndUser Successfully";
+                        vm.createsuccess = "Created UserSuccessfully";
 
                         UserService
                             .findAllUsers()
@@ -97,6 +98,19 @@
                     vm.userCount = vm.users.length;
 
                 });
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
         }
 
         function getLoggedInUser() {

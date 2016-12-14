@@ -12,6 +12,7 @@
 
         vm.updateMovie = updateMovie;
         vm.deleteMovie = deleteMovie;
+        vm.logout = logout;
 
         function init() {
             getCurrentUser();
@@ -95,6 +96,19 @@
 
                     }
                 });
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
         }
 
     }

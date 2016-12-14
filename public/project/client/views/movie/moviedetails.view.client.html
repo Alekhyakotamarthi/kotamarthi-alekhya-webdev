@@ -150,6 +150,8 @@
 
         <p></p></div>
 
+
+
     <a class="btn btn-success btn-block"
 
        ng-click="model.checkRating(model.review.rating, model.review.reviewtext, model.movie)">Submit</a>
@@ -195,11 +197,9 @@
     </div>
 
 
+    <div class = "container-fluid">
 
-
-
-
-    <div ng-if="model.loggedIn">
+    <div  ng-if="model.loggedIn">
         <h3 class="page-header">User Reviews</h3>
     <div  ng-repeat = "rev in model.movieReviews.reviews" >
 
@@ -222,15 +222,19 @@
 
 
 
-    </div>
+
+
     </div>
     </div>
 
-</div>
-</div>
+
+    </div>
+    <br>
+    <br>
+    </div>
 
 
-<nav class="navbar navbar-inverse navbar-fixed-bottom">
+<nav class="navbar navbar-inverse navbar-fixed-bottom pushup">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
             <a ng-if="model.loggedIn"

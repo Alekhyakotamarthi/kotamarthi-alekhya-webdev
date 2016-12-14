@@ -12,6 +12,7 @@
         var imdbID = $routeParams.mid;
         vm.title = $routeParams.title;
                     vm.RateMovie = RateMovie;
+        vm.logout = logout;
 
         vm.checkRating = checkRating;
         function init() {
@@ -27,7 +28,9 @@
 
                         vm.loggedIn = "true";
                         vm.loggedInUser = vm.user1._id;
+
                         vm.uid = vm.user1._id;
+                        vm.userName = vm.user1.username;
                         console.log(vm.loggedInUser);
 
                     } else {
@@ -36,14 +39,28 @@
                     }
                 });
 
+                 getUnamefromId(vm.uid);
                 getMovieInfo(imdbID);
                 getReviewsandRatings(imdbID);
-                getUnamefromId(vm.uid);
+
             //LoggedinUser();
 
 
         }
         init();
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
 
         function getUnamefromId(userId){
 
@@ -53,6 +70,8 @@
                     var User = response.data;
                     if(User._id){
                         vm.userName = User.username;
+                        console.log("username")
+                        console.log(vm.userName);
                     }else{
                         vm.error = "unable to add review";
                     }

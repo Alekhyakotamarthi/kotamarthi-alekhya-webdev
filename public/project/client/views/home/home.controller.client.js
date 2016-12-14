@@ -12,6 +12,7 @@
         var vm =this;
         vm.uid = $routeParams.uid;
         vm.searchMovieByTitle = searchMovieByTitle;
+        vm.logout = logout;
 
         vm.title = $routeParams.title;
         function init(){
@@ -50,6 +51,19 @@
                 })
         }
         init();
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
 
         function searchMovieByTitle(title){
             console.log(vm.title);
