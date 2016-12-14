@@ -1,5 +1,33 @@
 
-    <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <div class = "setnavcolor">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/home">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid pushdown">
         <h1>Register</h1>
             <input ng-model="username" type="text"
                class="form-control"
@@ -18,5 +46,42 @@
             {{model.error}}
         </div>
     </div>
+
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a ng-if="model.loggedIn"
+               ng-click="model.logout()">
+                <span>Logout</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/login">
+                <span>Login</span>
+            </a>
+        </p>
+        <p class="navbar-text pull-left">
+            <a ng-if="model.loggedIn"
+               href="#/user">
+                <span>Profile</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/register">
+                <span>Register</span>
+            </a>
+        </p>
+
+    </div>
+</nav>
+</div>
+
+
+
+
+
+
+
 
 
