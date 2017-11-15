@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var connectionString ='mongodb://alekhya:Portal20@ds033337.mongolab.com:33337/webdev';
+var connectionString ='';
 var mongoose = require("mongoose");
 mongoose.connect(connectionString);
 
